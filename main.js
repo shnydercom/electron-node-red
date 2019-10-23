@@ -4,8 +4,9 @@
 // Some settings you can edit easily
 
 const editable = true;              // Set this to false to create a run only application - no editor/no console
-const allowLoadSave = false;        // set to true to allow omport and export of flow
+const allowLoadSave = false;        // set to true to allow import and export of flow file
 const showMap = false;              // set to true to add Worldmap to the menu
+
 let flowfile = 'electronflow.json'; // default Flows file name - loaded at start
 const urldash = "/ui/#/0";          // Start on the dashboard page
 const urledit = "/red";             // url for the editor page
@@ -13,7 +14,7 @@ const urlconsole = "/console.htm";  // url for the console page
 const urlmap = "/worldmap";         // url for the worldmap
 const nrIcon = "nodered.png"        // Icon for the app in root dir (usually 256x256)
 
-// tcp port to use
+// TCP port to use
 //const listenPort = "18880";                           // fix it if you like
 const listenPort = parseInt(Math.random()*16383+49152)  // or random ephemeral port
 
@@ -93,17 +94,17 @@ let logBuffer = [];
 let logLength = 250;    // No. of lines of console log to keep.
 const levels = [ "", "fatal", "error", "warn", "info", "debug", "trace" ];
 
-ipc.on('clearLogBuffer', function(event, arg) { logBuffer = []; });
+ipc.on('clearLogBuffer', function() { logBuffer = []; });
 
 // Create the settings object - see default settings.js file for other options
 var settings = {
-    uiHost: "127.0.0.1",    // only allow local connections
-    httpAdminRoot: "/red",  // set to false to disable editor/deploy
+    uiHost: "127.0.0.1",    // only allow local connections, remove if you want to allow external access
+    httpAdminRoot: "/red",  // set to false to disable editor and deploy
     httpNodeRoot: "/",
     userDir: userdir,
     flowFile: flowfile,
-    editorTheme: { projects:{ enabled:false } },
-    functionGlobalContext: { },    // enables global context
+    editorTheme: { projects:{ enabled:false } },    // enable projects feature
+    functionGlobalContext: { },    // enables global context - add extras ehre if you need them
     logging: {
         websock: {
             level: 'info',
@@ -137,7 +138,7 @@ if (!editable) {
 // Initialise the runtime with a server and settings
 RED.init(server,settings);
 
-// Serve the editor UI from /red
+// Serve the editor UI from /red (if editable)
 if (settings.httpAdminRoot !== false) {
     red_app.use(settings.httpAdminRoot,RED.httpAdmin);
 }
@@ -147,7 +148,7 @@ red_app.use(settings.httpNodeRoot,RED.httpNode);
 
 // Create the Application's main menu
 var template = [];
-if (process.platform === 'darwin') {
+if (process.platform === 'darwin') { // Mac has it's own first menu
     template.push( {
         label: app.getName(),
         submenu: [
@@ -164,6 +165,7 @@ if (process.platform === 'darwin') {
         ]
     } )
 }
+// Now add the main Node-RED menu
 template.push(
     { label: 'Node-RED',
         submenu: [
@@ -351,10 +353,6 @@ function createWindow() {
     // Open the DevTools at start
     //mainWindow.webContents.openDevTools();
 }
-
-app.on('orderFrontStandardAboutPanel', function() {
-    createConsole();
-});
 
 // Called when Electron has finished initialization and is ready to create browser windows.
 app.on('ready', createWindow );
