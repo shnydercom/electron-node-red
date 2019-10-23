@@ -3,7 +3,7 @@
 
 // Some settings you can edit easily
 
-const editable = true;      // Set this to false to create a run only application - no editor/no console
+const editable = true;              // Set this to false to create a run only application - no editor/no console
 const allowLoadSave = false;        // set to true to allow omport and export of flow
 const showMap = false;              // set to true to add Worldmap to the menu
 let flowfile = 'electronflow.json'; // default Flows file name - loaded at start
@@ -11,6 +11,7 @@ const urldash = "/ui/#/0";          // Start on the dashboard page
 const urledit = "/red";             // url for the editor page
 const urlconsole = "/console.htm";  // url for the console page
 const urlmap = "/worldmap";         // url for the worldmap
+const nrIcon = "nodered.png"        // Icon for the app in root dir (usually 256x256)
 
 // tcp port to use
 //const listenPort = "18880";                           // fix it if you like
@@ -24,14 +25,10 @@ const http = require('http');
 const express = require("express");
 const electron = require('electron');
 
-const app = electron.app;
+const {app, Menu} = electron;
 const ipc = electron.ipcMain;
 const dialog = electron.dialog;
 const BrowserWindow = electron.BrowserWindow;
-const {Menu, MenuItem} = electron;
-
-// this should be placed at top of main.js to handle squirrel setup events quickly
-if (handleSquirrelEvent()) { return; }
 
 var RED = require("node-red");
 var red_app = express();
@@ -94,11 +91,13 @@ let mainWindow;
 let conWindow;
 let logBuffer = [];
 let logLength = 250;    // No. of lines of console log to keep.
+const levels = [ "", "fatal", "error", "warn", "info", "debug", "trace" ];
 
 ipc.on('clearLogBuffer', function(event, arg) { logBuffer = []; });
 
 // Create the settings object - see default settings.js file for other options
 var settings = {
+    uiHost: "127.0.0.1",    // only allow local connections
     httpAdminRoot: "/red",  // set to false to disable editor/deploy
     httpNodeRoot: "/",
     userDir: userdir,
@@ -114,7 +113,13 @@ var settings = {
                     if (editable) {  // No logging if not editable
                         var ts = (new Date(msg.timestamp)).toISOString();
                         ts = ts.replace("Z"," ").replace("T"," ");
-                        var line = ts+" : "+msg.msg;
+                        var line = "";
+                        if (msg.type && msg.id) {
+                            line = ts+" : ["+levels[msg.level/10]+"] ["+msg.type+":"+msg.id+"] "+msg.msg;
+                        }
+                        else {
+                            line = ts+" : ["+levels[msg.level/10]+"] "+msg.msg;
+                        }
                         logBuffer.push(line);
                         if (conWindow) { conWindow.webContents.send('debugMsg', line); }
                         if (logBuffer.length > logLength) { logBuffer.shift(); }
@@ -127,7 +132,7 @@ var settings = {
 if (!editable) {
     settings.httpAdminRoot = false;
     settings.readOnly = true;
- }
+}
 
 // Initialise the runtime with a server and settings
 RED.init(server,settings);
@@ -141,95 +146,83 @@ if (settings.httpAdminRoot !== false) {
 red_app.use(settings.httpNodeRoot,RED.httpNode);
 
 // Create the Application's main menu
-var template = [
-    // {label: "Application",
-    // submenu: [
-    //     //{ role: 'about' },
-    //     //{ type: "separator" },
-    //     { role: 'togglefullscreen' },
-    //     { role: 'quit' }
-    // ]},
+var template = [];
+if (process.platform === 'darwin') {
+    template.push( {
+        label: app.getName(),
+        submenu: [
+            { type: 'separator' },
+            { type: 'separator' },
+            { role: 'about' },
+            { type: 'separator' },
+            { role: 'hide' },
+            { role: 'hideothers' },
+            { role: 'unhide' },
+            { type: 'separator' },
+            { role: 'togglefullscreen' },
+            { role: 'quit' }        
+        ]
+    } )
+}
+template.push(
     { label: 'Node-RED',
-    submenu: [
-        {   type: 'separator' },
-        {   type: 'separator' },
-        {   label: 'Import Flow',
-            accelerator: "Shift+CmdOrCtrl+O",
-            click() { openFlow(); }
-        },
-        {   label: 'Save Flow As',
-            accelerator: "Shift+CmdOrCtrl+S",
-            click() { saveFlow(); }
-        },
-        {   type: 'separator' },
-        {   label: 'Console',
-            accelerator: "Shift+CmdOrCtrl+C",
-            click() { createConsole(); }
-        },
-        {   label: 'Dashboard',
-            accelerator: "Shift+CmdOrCtrl+D",
-            click() { mainWindow.loadURL("http://localhost:"+listenPort+urldash); }
-        },
-        {   label: 'Editor',
-            accelerator: "Shift+CmdOrCtrl+E",
-            click() { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
-        },
-        {   label: 'Worldmap',
-            accelerator: "Shift+CmdOrCtrl+M",
-            click() { mainWindow.loadURL("http://localhost:"+listenPort+urlmap); }
-        },
-        {   type: 'separator' },
-        {   label: 'Documentation',
-            click() { electron.shell.openExternal('https://nodered.org/docs') }
-        },
-        {   label: 'Flows and Nodes',
-            click() { electron.shell.openExternal('https://flows.nodered.org') }
-        },
-        {   label: 'Discourse Forum',
-            click() { electron.shell.openExternal('https://discourse.nodered.org/') }
-        },
-        {   type: "separator" },
-        {   role: 'togglefullscreen' },
-        {   role: 'quit' }
-    ]}
-    // ,{label: "Edit",
-    // submenu: [
-    //     { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-    //     { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
-    //     { type: "separator" },
-    //     { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-    //     { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-    //     { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-    //     { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
-    // ]}
-    // ,{ label: 'View',
-    // submenu: [
-    //     {   label: 'Reload',
-    //         accelerator: 'CmdOrCtrl+R',
-    //         click(item, focusedWindow) { if (focusedWindow) { focusedWindow.reload(); }}
-    //     },
-    //     {   label: 'Toggle Developer Tools',
-    //         accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-    //         click(item, focusedWindow) { if (focusedWindow) { focusedWindow.webContents.toggleDevTools(); }}
-    //     },
-    //     {   type: 'separator' },
-    //     {   role: 'resetzoom' },
-    //     {   role: 'zoomin' },
-    //     {   role: 'zoomout' },
-    //     {   type: 'separator' },
-    //     {   role: 'togglefullscreen' },
-    //     {   role: 'minimize' }
-    // ]}
-];
+        submenu: [
+            {   label: 'Import Flow',
+                accelerator: "Shift+CmdOrCtrl+O",
+                click() { openFlow(); }
+            },
+            {   label: 'Save Flow As',
+                accelerator: "Shift+CmdOrCtrl+S",
+                click() { saveFlow(); }
+            },
+            {   type: 'separator' },
+            {   label: 'Console',
+                accelerator: "Shift+CmdOrCtrl+C",
+                click() { createConsole(); }
+            },
+            {   label: 'Dashboard',
+                accelerator: "Shift+CmdOrCtrl+D",
+                click() { mainWindow.loadURL("http://localhost:"+listenPort+urldash); }
+            },
+            {   label: 'Editor',
+                accelerator: "Shift+CmdOrCtrl+E",
+                click() { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
+            },
+            {   label: 'Worldmap',
+                accelerator: "Shift+CmdOrCtrl+M",
+                click() { mainWindow.loadURL("http://localhost:"+listenPort+urlmap); }
+            },
+            {   type: 'separator' },
+            {   type: 'separator' },
+            {   label: 'Documentation',
+                click() { electron.shell.openExternal('https://nodered.org/docs') }
+            },
+            {   label: 'Flows and Nodes',
+                click() { electron.shell.openExternal('https://flows.nodered.org') }
+            },
+            {   label: 'Discourse Forum',
+                click() { electron.shell.openExternal('https://discourse.nodered.org/') }
+            }
+        ]
+    }
+);
 
-if (!showMap) { template[0].submenu.splice(8,1); }
-
-if (!editable) {
-    template[0].submenu.splice(3,1);
-    template[0].submenu.splice(4,1);
+var tempNum = template.length - 1;
+// Add quit and toggle full screen to this menu if not on Mac
+if (process.platform !== 'darwin') {
+    template[tempNum].submenu.push({ type: "separator" });
+    template[tempNum].submenu.push({ role: 'togglefullscreen' });
+    template[tempNum].submenu.push({ role: 'quit' });
 }
 
-if (!allowLoadSave) { template[0].submenu.splice(0,2); }
+if (!showMap) { template[tempNum].submenu.splice(8,1); }
+
+if (!editable) {
+    template[tempNum].submenu.splice(3,1);
+    template[tempNum].submenu.splice(4,1);
+}
+
+if (!allowLoadSave) { template[tempNum].submenu.splice(0,2); }
 
 let fileName = "";
 function saveFlow() {
@@ -243,7 +236,7 @@ function saveFlow() {
                 if (err) { dialog.showErrorBox('Error', err); }
                 else {
                     dialog.showMessageBox({
-                        icon: "nodered.png",
+                        icon: nrIcon,
                         message:"Flow file saved as\n\n"+file_path,
                         buttons: ["OK"]
                     });
@@ -286,11 +279,14 @@ function createConsole() {
         title: "Node-RED Console",
         width: 800,
         height: 600,
-        icon: path.join(__dirname, 'nodered.png'),
-        autoHideMenuBar: true
+        icon: path.join(__dirname, nrIcon),
+        autoHideMenuBar: true,
+        webPreferences: {
+            nodeIntegration: true
+        }
     });
     conWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'console.htm'),
+        pathname: path.join(__dirname, urlconsole),
         protocol: 'file:',
         slashes: true
     }))
@@ -310,13 +306,16 @@ function createWindow() {
         //titleBarStyle: "hidden",
         width: 1024,
         height: 768,
-        icon: path.join(__dirname, 'nodered.png'),
+        icon: path.join(__dirname, nrIcon),
         fullscreenable: true,
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: false
         }
     });
+    const menu = Menu.buildFromTemplate(template);
+    Menu.setApplicationMenu(menu);
+
     mainWindow.loadURL(`file://${__dirname}/load.html`);
     //if (process.platform !== 'darwin') { mainWindow.setAutoHideMenuBar(true); }
 
@@ -324,7 +323,6 @@ function createWindow() {
         if ((httpResponseCode == 404) && (newURL == ("http://localhost:"+listenPort+urldash))) {
             setTimeout(mainWindow.webContents.reload, 250);
         }
-        Menu.setApplicationMenu(Menu.buildFromTemplate(template));
     });
 
     // mainWindow.webContents.on('did-finish-load', () => {
@@ -354,6 +352,10 @@ function createWindow() {
     //mainWindow.webContents.openDevTools();
 }
 
+app.on('orderFrontStandardAboutPanel', function() {
+    createConsole();
+});
+
 // Called when Electron has finished initialization and is ready to create browser windows.
 app.on('ready', createWindow );
 
@@ -379,61 +381,3 @@ RED.start().then(function() {
         mainWindow.loadURL("http://127.0.0.1:"+listenPort+urldash);
     });
 });
-
-///////////////////////////////////////////////////////
-// All this Squirrel stuff is for the Windows installer
-function handleSquirrelEvent() {
-    if (process.argv.length === 1) { return false; }
-
-    const path = require('path');
-    const ChildProcess = require('child_process');
-    const appFolder = path.resolve(process.execPath, '..');
-    const rootAtomFolder = path.resolve(appFolder, '..');
-    const updateDotExe = path.resolve(path.join(rootAtomFolder, 'Update.exe'));
-    const exeName = path.basename(process.execPath);
-    const spawn = function(command, args) {
-        let spawnedProcess, error;
-
-        try { spawnedProcess = ChildProcess.spawn(command, args, {detached: true}); }
-        catch (error) {}
-        return spawnedProcess;
-    };
-
-    const spawnUpdate = function(args) {
-        return spawn(updateDotExe, args);
-    };
-
-    const squirrelEvent = process.argv[1];
-    switch (squirrelEvent) {
-        case '--squirrel-install':
-        case '--squirrel-updated':
-        // Optionally do things such as:
-        // - Add your .exe to the PATH
-        // - Write to the registry for things like file associations and
-        //   explorer context menus
-
-        // Install desktop and start menu shortcuts
-        spawnUpdate(['--createShortcut', exeName]);
-
-        setTimeout(app.quit, 1000);
-        return true;
-
-        case '--squirrel-uninstall':
-        // Undo anything you did in the --squirrel-install and
-        // --squirrel-updated handlers
-
-        // Remove desktop and start menu shortcuts
-        spawnUpdate(['--removeShortcut', exeName]);
-
-        setTimeout(app.quit, 1000);
-        return true;
-
-        case '--squirrel-obsolete':
-        // This is called on the outgoing version of your app before
-        // we update to the new version - it's the opposite of
-        // --squirrel-updated
-
-        app.quit();
-        return true;
-    }
-}
