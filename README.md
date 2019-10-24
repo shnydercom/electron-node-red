@@ -12,7 +12,7 @@ This project uses the **electron-builder** project to help build native versions
 of Node-RED applications, so please read and become familiar with their [documentation](https://www.electron.build/) as some basic 
 knowledge is assumed.
 
-As a pre-req, as well as a recent version of node.js, you will need the yarn install tool
+As a pre-req, as well as a recent version of node.js, you will need the **yarn** install tool
 
 ```bash
 # Clone this repository
@@ -33,10 +33,11 @@ yarn && yarn dist
 ```
 
 to create a runtime for your local platform.
-However - there may be some errors. If so they are usually fairly self explanatory, and may just require
-installation of another npm or brew or apt package, then retry the command.
+However - there may be some errors. If so they are usually fairly self explanatory, 
+and may just require installation of another npm or brew or apt package, 
+then retry the command.
 
-Runtimes are created in the `dist` directory under `electron-node-red`.
+Runtimes are created in the `dist` directory under the `electron-node-red` project.
 
 ### Building for other platforms
 
@@ -54,12 +55,17 @@ The defaults are to build a `.msi` for Windows, a `.dmg` for Mac and both a `.de
 These can be changed by editing the build section of the `package.json` file, see the
 [electron-builder config docs](https://www.electron.build/configuration/configuration) for more info.
 
-## Running localy
+## Running locally
 
 While developing and testing you can just run locally by running
 ```
 npm start
 ```
 from within the project folder.
+
+The initial flow file is named `electronflow.json` along with it's credentials file
+`electronflow_cred.json`. Just copy your existing flow in instead.
+
+The default is to start on the dashboard page - as this intended to be just an application - without the Node-RED editor exposed to the end user.
 
 ---
