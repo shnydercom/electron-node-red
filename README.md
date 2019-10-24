@@ -6,7 +6,7 @@ This is not intended to be a useful tool as-is, but as a base for you to create 
 
 At the top of `main.js` are a couple of flags you can switch to turn off editing, allow loading of a different flow file (and save as), and add the worldmap to the menu. Again these are only there to show you possibilities. Have fun.
 
-## To Use
+## Configuring the project for building
 
 This project uses the **electron-builder** project to help build native versions
 of Node-RED applications, so please read and become familiar with their [documentation](https://www.electron.build/) as some basic 
@@ -55,9 +55,14 @@ The defaults are to build a `.msi` for Windows, a `.dmg` for Mac and both a `.de
 These can be changed by editing the build section of the `package.json` file, see the
 [electron-builder config docs](https://www.electron.build/configuration/configuration) for more info.
 
-## Running locally
+## Building multi platform using Docker
 
-While developing and testing you can just run locally by running
+Electron-builder has a pre-configured Docker image that can help you build cross platform
+images if you like Docker - again read [their docs](https://www.electron.build/multi-platform-build#build-electron-app-using-docker-on-a-local-machine).
+
+## Developing and Testing - Running locally
+
+While developing and testing you can just run your app locally by running
 ```
 npm start
 ```
@@ -66,6 +71,7 @@ from within the project folder.
 The initial flow file is named `electronflow.json` along with it's credentials file
 `electronflow_cred.json`. Just copy your existing flow in instead.
 
-The default is to start on the dashboard page - as this intended to be just an application - without the Node-RED editor exposed to the end user.
+The default is to start on the dashboard page - as this is intended to be just an application - without the Node-RED editor exposed to the end user, but there are some simple flags to
+to configure this at the top of `main.js`.
 
 ---
