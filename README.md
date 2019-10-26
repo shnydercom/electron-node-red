@@ -51,7 +51,7 @@ yarn && yarn dist -m        // for mac
 These will generally fail the first time through and you will need to install some extra library in order to make it
 complete successfully.
 
-The defaults are to build a `.msi` for Windows, a `.dmg` for Mac and both a `.deb` and `.rpm` for Linux.
+The defaults are to build a `.msi` for Windows, a `.dmg` for Mac, and both a `.deb` and `.rpm` for Linux.
 These can be changed by editing the build section of the `package.json` file, see the
 [electron-builder config docs](https://www.electron.build/configuration/configuration) for more info.
 

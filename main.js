@@ -6,6 +6,7 @@
 const editable = true;              // Set this to false to create a run only application - no editor/no console
 const allowLoadSave = false;        // set to true to allow import and export of flow file
 const showMap = false;              // set to true to add Worldmap to the menu
+const kioskMode = false;            // set to true to start in kiosk mode
 
 let flowfile = 'electronflow.json'; // default Flows file name - loaded at start
 const urldash = "/ui/#/0";          // Start on the dashboard page
@@ -215,9 +216,11 @@ if (process.platform !== 'darwin') {
     template[tempNum].submenu.push({ type: "separator" });
     template[tempNum].submenu.push({ role: 'togglefullscreen' });
     template[tempNum].submenu.push({ role: 'quit' });
+    if (!showMap) { template[tempNum].submenu.splice(8,1); }
 }
-
-if (!showMap) { template[tempNum].submenu.splice(8,1); }
+else {
+    if (!showMap) { template[tempNum].submenu.splice(6,1); }
+}
 
 if (!editable) {
     template[tempNum].submenu.splice(3,1);
@@ -251,8 +254,7 @@ function saveFlow() {
 function openFlow() {
     dialog.showOpenDialog({ filters:[{ name:'JSON', extensions:['json']} ]},
         function (fileNames) {
-            if (fileNames) {
-                //console.log(fileNames[0]);
+            if (fileNames && fileNames.length > 0) {
                 fs.readFile(fileNames[0], 'utf-8', function (err, data) {
                     try {
                         var flo = JSON.parse(data);
@@ -305,11 +307,11 @@ function createConsole() {
 function createWindow() {
     mainWindow = new BrowserWindow({
         title: "Node-RED",
-        //titleBarStyle: "hidden",
         width: 1024,
         height: 768,
         icon: path.join(__dirname, nrIcon),
         fullscreenable: true,
+        kiosk: kioskMode,
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: false
@@ -327,8 +329,8 @@ function createWindow() {
         }
     });
 
-    // mainWindow.webContents.on('did-finish-load', () => {
-    //     console.log("LOADED DASHBOARD");
+    // mainWindow.webContents.on('did-finish-load', (a) => {
+    //     console.log("FINISHED LOAD",a);
     // });
 
     mainWindow.webContents.on("new-window", function(e, url, frameName, disposition, options) {
