@@ -99,7 +99,7 @@ ipc.on('clearLogBuffer', function() { logBuffer = []; });
 
 // Create the settings object - see default settings.js file for other options
 var settings = {
-    uiHost: "127.0.0.1",    // only allow local connections, remove if you want to allow external access
+    uiHost: "localhost",    // only allow local connections, remove if you want to allow external access
     httpAdminRoot: "/red",  // set to false to disable editor and deploy
     httpNodeRoot: "/",
     userDir: userdir,
@@ -371,13 +371,13 @@ app.on('activate', function() {
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) {
         createWindow();
-        mainWindow.loadURL("http://127.0.0.1:"+listenPort+urldash);
+        mainWindow.loadURL("http://localhost:"+listenPort+urldash);
     }
 });
 
 // Start the Node-RED runtime, then load the inital dashboard page
 RED.start().then(function() {
-    server.listen(listenPort,"127.0.0.1",function() {
-        mainWindow.loadURL("http://127.0.0.1:"+listenPort+urldash);
+    server.listen(listenPort,"localhost",function() {
+        mainWindow.loadURL("http://localhost:"+listenPort+urldash);
     });
 });
