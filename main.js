@@ -148,86 +148,67 @@ if (settings.httpAdminRoot !== false) {
 red_app.use(settings.httpNodeRoot,RED.httpNode);
 
 // Create the Application's main menu
-var template = [];
-if (process.platform === 'darwin') { // Mac has it's own first menu
-    template.push( {
-        label: app.getName(),
-        submenu: [
-            { type: 'separator' },
-            { type: 'separator' },
-            { role: 'about' },
-            { type: 'separator' },
-            { role: 'hide' },
-            { role: 'hideothers' },
-            { role: 'unhide' },
-            { type: 'separator' },
-            { role: 'togglefullscreen' },
-            { role: 'quit' }        
-        ]
-    } )
-}
-// Now add the main Node-RED menu
-template.push(
-    { label: 'Node-RED',
-        submenu: [
-            {   label: 'Import Flow',
-                accelerator: "Shift+CmdOrCtrl+O",
-                click() { openFlow(); }
-            },
-            {   label: 'Save Flow As',
-                accelerator: "Shift+CmdOrCtrl+S",
-                click() { saveFlow(); }
-            },
-            {   type: 'separator' },
-            {   label: 'Console',
-                accelerator: "Shift+CmdOrCtrl+C",
-                click() { createConsole(); }
-            },
-            {   label: 'Dashboard',
-                accelerator: "Shift+CmdOrCtrl+D",
-                click() { mainWindow.loadURL("http://localhost:"+listenPort+urldash); }
-            },
-            {   label: 'Editor',
-                accelerator: "Shift+CmdOrCtrl+E",
-                click() { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
-            },
-            {   label: 'Worldmap',
-                accelerator: "Shift+CmdOrCtrl+M",
-                click() { mainWindow.loadURL("http://localhost:"+listenPort+urlmap); }
-            },
-            {   type: 'separator' },
-            {   type: 'separator' },
-            {   label: 'Documentation',
-                click() { electron.shell.openExternal('https://nodered.org/docs') }
-            },
-            {   label: 'Flows and Nodes',
-                click() { electron.shell.openExternal('https://flows.nodered.org') }
-            },
-            {   label: 'Discourse Forum',
-                click() { electron.shell.openExternal('https://discourse.nodered.org/') }
-            }
-        ]
-    }
-);
+var template = [{
+    label: 'Node-RED',
+    submenu: [
+        {   label: 'Import Flow',
+            accelerator: "Shift+CmdOrCtrl+O",
+            click() { openFlow(); }
+        },
+        {   label: 'Save Flow As',
+            accelerator: "Shift+CmdOrCtrl+S",
+            click() { saveFlow(); }
+        },
+        {   type: 'separator' },
+        {   label: 'Console',
+            accelerator: "Shift+CmdOrCtrl+C",
+            click() { createConsole(); }
+        },
+        {   label: 'Dashboard',
+            accelerator: "Shift+CmdOrCtrl+D",
+            click() { mainWindow.loadURL("http://localhost:"+listenPort+urldash); }
+        },
+        {   label: 'Editor',
+            accelerator: "Shift+CmdOrCtrl+E",
+            click() { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
+        },
+        {   label: 'Worldmap',
+            accelerator: "Shift+CmdOrCtrl+M",
+            click() { mainWindow.loadURL("http://localhost:"+listenPort+urlmap); }
+        },
+        {   type: 'separator' },
+        {   type: 'separator' },
+        {   label: 'Documentation',
+            click() { electron.shell.openExternal('https://nodered.org/docs') }
+        },
+        {   label: 'Flows and Nodes',
+            click() { electron.shell.openExternal('https://flows.nodered.org') }
+        },
+        {   label: 'Discourse Forum',
+            click() { electron.shell.openExternal('https://discourse.nodered.org/') }
+        },
+        { type: 'separator' },
+        { role: 'togglefullscreen' },
+        { role: 'quit' }
+    ]
+}];
 
-var tempNum = template.length - 1;
-// Add quit and toggle full screen to this menu if not on Mac
-if (process.platform !== 'darwin') {
-    template[tempNum].submenu.push({ type: "separator" });
-    template[tempNum].submenu.push({ role: 'togglefullscreen' });
-    template[tempNum].submenu.push({ role: 'quit' });
-    if (!showMap) { template[tempNum].submenu.splice(8,1); }
-}
-else {
-    if (!showMap) { template[tempNum].submenu.splice(6,1); }
-}
+if (!showMap) { template[0].submenu.splice(6,1); }
 
 if (!editable) {
-    template[tempNum].submenu.splice(3,1);
-    template[tempNum].submenu.splice(4,1);
+    template[0].submenu.splice(3,1);
+    template[0].submenu.splice(4,1);
 }
 
-if (!allowLoadSave) { template[tempNum].submenu.splice(0,2); }
+if (!allowLoadSave) { template[0].submenu.splice(0,2); }
+
+// Top and tail menu on Mac
+if (process.platform === 'darwin') { 
+    template[0].submenu.unshift({ type: 'separator' });
+    template[0].submenu.unshift({ role: 'about' });
+    template[0].submenu.unshift({ type: 'separator' });
+    template[0].submenu.unshift({ type: 'separator' });
+}
 
 let fileName = "";
 function saveFlow() {
