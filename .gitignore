@@ -1,7 +1,7 @@
 
 dist/*
 lib/*
-
+package-lock.json
 node_modules
 .config.json
 .flows.json.backup
