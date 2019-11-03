@@ -12,10 +12,10 @@ At the top of `main.js` are a couple of flags you can switch to turn off editing
 ## Configuring the project for building
 
 This project uses the **electron-builder** project to help build native versions
-of Node-RED applications, so please read and become familiar with their [documentation](https://www.electron.build/) as some basic 
-knowledge is assumed.
+of Node-RED applications, so please read and become familiar with their
+[documentation](https://www.electron.build/) as some basic knowledge is assumed.
 
-As a pre-req, as well as a recent version of node.js, you will need the **yarn** install tool
+As a pre-req, as well as a recent version of node.js, you will need the **yarn** install tool.
 
 ```bash
 # Clone this repository
@@ -31,13 +31,14 @@ yarn
 ## Building local runtime
 
 You should then be able to run
-```
+
+```bash
 yarn && yarn dist
 ```
 
 to create a runtime for your local platform.
-However - there may be some errors. If so they are usually fairly self explanatory, 
-and may just require installation of another npm or brew or apt package, 
+However - there may be some errors. If so they are usually fairly self explanatory,
+and may just require installation of another npm or brew or apt package,
 then retry the command.
 
 Runtimes are created in the `dist` directory under the `electron-node-red` project.
@@ -45,7 +46,8 @@ Runtimes are created in the `dist` directory under the `electron-node-red` proje
 ### Building for other platforms
 
 Generally you can just add the required parameter to the command
-```
+
+```bash
 yarn && yarn dist -w        // for windows
 yarn && yarn dist -l        // for linux
 yarn && yarn dist -m        // for mac
@@ -68,9 +70,11 @@ This is very useful if you need to build for Windows on a Mac as the electron-bu
 ## Developing and Testing - Running locally
 
 While developing and testing you can just run your app locally by running
-```
+
+```bash
 npm start
 ```
+
 from within the project folder.
 
 The initial flow file is named `electronflow.json` along with it's credentials file
