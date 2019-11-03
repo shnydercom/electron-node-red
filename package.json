@@ -19,7 +19,7 @@
         "node-red": "1.0.2",
         "node-red-contrib-play-audio": "*",
         "node-red-contrib-web-worldmap": "*",
-        "node-red-dashboard": "^2.17.1",
+        "node-red-dashboard": "*",
         "node-red-node-base64": "*",
         "node-red-node-geofence": "*",
         "node-red-node-random": "*",
@@ -40,7 +40,7 @@
     },
     "homepage": "https://github.com/dceejay/electron-node-red#readme",
     "devDependencies": {
-        "electron": "^7.0.0",
+        "electron": "^7.0.1",
         "electron-builder": "^21.2.0"
     },
     "build": {
