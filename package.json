@@ -6,7 +6,7 @@
     "scripts": {
         "pack": "electron-builder --dir",
         "dist": "electron-builder",
-        "release": "build",
+        "release": "electron-builder build -p always",
         "postinstall": "electron-builder install-app-deps",
         "start": "electron main.js",
         "test": "echo \" Warning: no test specified \""
