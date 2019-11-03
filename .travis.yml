@@ -18,6 +18,9 @@ cache:
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
 
+before_script:
+  - yarn install
+
 script:
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
