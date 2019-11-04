@@ -42,7 +42,7 @@
     "homepage": "https://github.com/dceejay/electron-node-red#readme",
     "devDependencies": {
         "electron": "^7.0.1",
-        "electron-builder": "^21.2.0"
+        "electron-builder": "^22.1.0"
     },
     "build": {
         "npmRebuild": false,
