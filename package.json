@@ -41,7 +41,7 @@
     },
     "homepage": "https://github.com/dceejay/electron-node-red#readme",
     "devDependencies": {
-        "electron": "^7.0.1",
+        "electron": "^7.1.1",
         "electron-builder": "^22.1.0"
     },
     "build": {
@@ -50,7 +50,8 @@
         "productName": "Node-RED",
         "copyright": "Copyright © 2019 D.Conway-Jones",
         "mac": {
-            "category": "public.app-category.developer-tools"
+            "category": "public.app-category.developer-tools",
+            "target": "dmg"
         },
         "linux": {
             "target": [
