@@ -72,7 +72,7 @@ This is very useful if you need to build for Windows on a Mac as the electron-bu
 While developing and testing you can just run your app locally by running
 
 ```bash
-npm start
+yarn start
 ```
 
 from within the project folder.

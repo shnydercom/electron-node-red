@@ -11,6 +11,7 @@ node_modules
 *win32-x64*
 *.back
 .config.json.backup
+.electronflow*
 *.backup
 logs
 *.log

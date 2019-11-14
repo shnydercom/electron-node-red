@@ -3,17 +3,18 @@
 
 // Some settings you can edit easily
 
-const editable = true;              // Set this to false to create a run only application - no editor/no console
+const editable = true;              // set this to false to create a run only application - no editor/no console
 const allowLoadSave = false;        // set to true to allow import and export of flow file
 const showMap = false;              // set to true to add Worldmap to the menu
 const kioskMode = false;            // set to true to start in kiosk mode
 
 let flowfile = 'electronflow.json'; // default Flows file name - loaded at start
-const urldash = "/ui/#/0";          // Start on the dashboard page
+const urldash = "/ui/#/0";          // url for the dashboard page
 const urledit = "/red";             // url for the editor page
 const urlconsole = "/console.htm";  // url for the console page
 const urlmap = "/worldmap";         // url for the worldmap
 const nrIcon = "nodered.png"        // Icon for the app in root dir (usually 256x256)
+const urlStart = urldash;           // Start on this page
 
 // TCP port to use
 //const listenPort = "18880";                           // fix it if you like
@@ -327,7 +328,7 @@ function createWindow() {
     //if (process.platform !== 'darwin') { mainWindow.setAutoHideMenuBar(true); }
 
     mainWindow.webContents.on('did-get-response-details', function(event, status, newURL, originalURL, httpResponseCode) {
-        if ((httpResponseCode == 404) && (newURL == ("http://localhost:"+listenPort+urldash))) {
+        if ((httpResponseCode == 404) && (newURL == ("http://localhost:"+listenPort+urlStart))) {
             setTimeout(mainWindow.webContents.reload, 250);
         }
     });
