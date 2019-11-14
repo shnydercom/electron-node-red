@@ -16,6 +16,7 @@
         "url": "git+https://github.com/dceejay/electron-node-red.git"
     },
     "dependencies": {
+        "electron-is-dev": "*",
         "express": "^4.17.1",
         "node-red": "1.0.2",
         "node-red-contrib-play-audio": "*",

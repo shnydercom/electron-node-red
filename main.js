@@ -19,6 +19,7 @@ const nrIcon = "nodered.png"        // Icon for the app in root dir (usually 256
 //const listenPort = "18880";                           // fix it if you like
 const listenPort = parseInt(Math.random()*16383+49152)  // or random ephemeral port
 
+const pkg = require('./package.json');
 const os = require('os');
 const fs = require('fs');
 const url = require('url');
@@ -26,6 +27,7 @@ const path = require('path');
 const http = require('http');
 const express = require("express");
 const electron = require('electron');
+const isDev = require('electron-is-dev');
 
 const {app, Menu} = electron;
 const ipc = electron.ipcMain;
@@ -205,9 +207,29 @@ if (!allowLoadSave) { template[0].submenu.splice(0,2); }
 // Top and tail menu on Mac
 if (process.platform === 'darwin') { 
     template[0].submenu.unshift({ type: 'separator' });
-    template[0].submenu.unshift({ role: 'about' });
+    template[0].submenu.unshift({ label: "About Node-RED", selector: "orderFrontStandardAboutPanel:" });
     template[0].submenu.unshift({ type: 'separator' });
     template[0].submenu.unshift({ type: 'separator' });
+}
+
+// Add Dev menu if in dev mode
+if (isDev) {
+    template.push({
+        label: 'Development',
+        submenu: [
+            { label: 'Reload', accelerator: 'CmdOrCtrl+R',
+                click (item, focusedWindow) {
+                    if (focusedWindow) focusedWindow.reload()
+                }
+            },
+            { label: 'Toggle Developer Tools',
+                accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+                click (item, focusedWindow) {
+                    if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+                }
+            }
+        ]
+    })
 }
 
 let fileName = "";
@@ -354,6 +376,15 @@ app.on('activate', function() {
         mainWindow.loadURL("http://localhost:"+listenPort+urldash);
     }
 });
+
+if (process.platform === 'darwin') {   
+    app.setAboutPanelOptions({
+        applicationName: pkg.productName,
+        version: pkg.version,
+        copyright: "Copyright © 2019, D Conway-Jones.",
+        credits: "Node-RED and other components are copyright the JS Foundation and other contributors."
+    });
+}
 
 // Start the Node-RED runtime, then load the inital dashboard page
 RED.start().then(function() {
