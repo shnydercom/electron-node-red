@@ -45,10 +45,19 @@
         "electron": "^7.1.1",
         "electron-builder": "^22.1.0"
     },
+    "NRelectron": {
+        "productName": "Node-RED Electron",
+        "editable": true,
+        "allowLoadSave": false,
+        "showMap": false,
+        "kioskMode": false, 
+        "flowFile": "electronflow.json",
+        "start": "dashboard"
+    },
     "build": {
         "npmRebuild": false,
         "appId": "com.electron.node-red",
-        "productName": "Node-RED",
+        "productName": "Node-RED Electron",
         "copyright": "Copyright © 2019 D.Conway-Jones",
         "mac": {
             "category": "public.app-category.developer-tools",

@@ -7,7 +7,9 @@ This is an Electron template to embed [Node-RED](https://nodered.org) with a Das
 
 This is not intended to be a useful tool as-is, but as a base for you to create your own versions. You will need to edit the `main.js` to suit your application and update the `package.json` file to include your own required nodes and dependencies.
 
-At the top of `main.js` are a couple of flags you can switch to turn off editing, allow loading of a different flow file (and save as), and add the worldmap to the menu. Again these are only there to show you possibilities. Have fun.
+There are several simple switches that can be set in the `NRelectron` section of
+the `package.json` file. More significant modifications will require modification
+of the `main.js` file. Have fun.
 
 ## Configuring the project for building
 
@@ -65,7 +67,7 @@ These can be changed by editing the build section of the `package.json` file, se
 Electron-builder has a pre-configured Docker image that can help you build cross platform
 images if you like Docker - again read [their docs](https://www.electron.build/multi-platform-build#build-electron-app-using-docker-on-a-local-machine).
 
-This is very useful if you need to build for Windows on a Mac as the electron-builder invokes wine which is only 32-bit and so can't be run under Catalina.
+This is very useful if you need to build for Windows on a Mac as the electron-builder invokes **wine** which is only 32-bit and so can't be run under Catalina.
 
 ## Developing and Testing - Running locally
 

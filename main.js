@@ -1,26 +1,31 @@
 
 'use strict';
+const pkg = require('./package.json');
+let options;
+if (pkg.hasOwnProperty("NRelectron")) { options = pkg["NRelectron"] }
 
-// Some settings you can edit easily
+// Some settings you can edit if you don't set them in package.json
+console.log(options)
+const editable = options.editable || true;       // set this to false to create a run only application - no editor/no console
+const allowLoadSave = options.allowLoadSave || false; // set to true to allow import and export of flow file
+const showMap = options.showMap || false;       // set to true to add Worldmap to the menu
+const kioskMode = options.kioskMode || false;     // set to true to start in kiosk mode
+let flowfile = options.flowFile || 'electronflow.json'; // default Flows file name - loaded at start
 
-const editable = true;              // set this to false to create a run only application - no editor/no console
-const allowLoadSave = false;        // set to true to allow import and export of flow file
-const showMap = false;              // set to true to add Worldmap to the menu
-const kioskMode = false;            // set to true to start in kiosk mode
-
-let flowfile = 'electronflow.json'; // default Flows file name - loaded at start
 const urldash = "/ui/#/0";          // url for the dashboard page
 const urledit = "/red";             // url for the editor page
 const urlconsole = "/console.htm";  // url for the console page
 const urlmap = "/worldmap";         // url for the worldmap
 const nrIcon = "nodered.png"        // Icon for the app in root dir (usually 256x256)
-const urlStart = urldash;           // Start on this page
+let urlStart;                       // Start on this page
+if (options.start.toLowerCase() === "editor") { urlStart = urledit; }
+else if (options.start.toLowerCase() === "map") { urlStart = urlmap; }
+else { urlStart = urldash; }
 
 // TCP port to use
 //const listenPort = "18880";                           // fix it if you like
 const listenPort = parseInt(Math.random()*16383+49152)  // or random ephemeral port
 
-const pkg = require('./package.json');
 const os = require('os');
 const fs = require('fs');
 const url = require('url');
@@ -208,7 +213,7 @@ if (!allowLoadSave) { template[0].submenu.splice(0,2); }
 // Top and tail menu on Mac
 if (process.platform === 'darwin') { 
     template[0].submenu.unshift({ type: 'separator' });
-    template[0].submenu.unshift({ label: "About Node-RED", selector: "orderFrontStandardAboutPanel:" });
+    template[0].submenu.unshift({ label: "About "+options.productName||"Node-RED Electron", selector: "orderFrontStandardAboutPanel:" });
     template[0].submenu.unshift({ type: 'separator' });
     template[0].submenu.unshift({ type: 'separator' });
 }
@@ -337,15 +342,15 @@ function createWindow() {
     //     console.log("FINISHED LOAD",a);
     // });
 
-    mainWindow.webContents.on("new-window", function(e, url, frameName, disposition, options) {
+    mainWindow.webContents.on("new-window", function(e, url, frameName, disposition, option) {
         // if a child window opens... modify any other options such as width/height, etc
         // in this case make the child overlap the parent exactly...
         //console.log("NEW WINDOW",url);
         var w = mainWindow.getBounds();
-        options.x = w.x;
-        options.y = w.y;
-        options.width = w.width;
-        options.height = w.height;
+        option.x = w.x;
+        option.y = w.y;
+        option.width = w.width;
+        option.height = w.height;
     })
 
     mainWindow.on('closed', () => {
@@ -374,15 +379,15 @@ app.on('activate', function() {
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) {
         createWindow();
-        mainWindow.loadURL("http://localhost:"+listenPort+urldash);
+        mainWindow.loadURL("http://localhost:"+listenPort+urlStart);
     }
 });
 
 if (process.platform === 'darwin') {   
     app.setAboutPanelOptions({
-        applicationName: pkg.productName,
-        version: pkg.version,
-        copyright: "Copyright © 2019, D Conway-Jones.",
+        applicationVersion: pkg.version,
+        version: pkg.dependencies["node-red"],
+        copyright: "Copyright © 2019, "+pkg.author.name,
         credits: "Node-RED and other components are copyright the JS Foundation and other contributors."
     });
 }
@@ -390,6 +395,6 @@ if (process.platform === 'darwin') {
 // Start the Node-RED runtime, then load the inital dashboard page
 RED.start().then(function() {
     server.listen(listenPort,"localhost",function() {
-        mainWindow.loadURL("http://localhost:"+listenPort+urldash);
+        mainWindow.loadURL("http://localhost:"+listenPort+urlStart);
     });
 });
