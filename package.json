@@ -55,7 +55,6 @@
         "start": "dashboard"
     },
     "build": {
-        "npmRebuild": false,
         "appId": "com.electron.node-red",
         "productName": "Node-RED Electron",
         "copyright": "Copyright © 2019 D.Conway-Jones",
