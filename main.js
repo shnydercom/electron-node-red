@@ -5,7 +5,7 @@ let options;
 if (pkg.hasOwnProperty("NRelectron")) { options = pkg["NRelectron"] }
 
 // Some settings you can edit if you don't set them in package.json
-console.log(options)
+//console.log(options)
 const editable = options.editable || true;       // set this to false to create a run only application - no editor/no console
 const allowLoadSave = options.allowLoadSave || false; // set to true to allow import and export of flow file
 const showMap = options.showMap || false;       // set to true to add Worldmap to the menu
@@ -157,7 +157,7 @@ red_app.use(settings.httpNodeRoot,RED.httpNode);
 
 // Create the Application's main menu
 var template = [{
-    label: 'Node-RED',
+    label: "View",
     submenu: [
         {   label: 'Import Flow',
             accelerator: "Shift+CmdOrCtrl+O",
@@ -320,17 +320,18 @@ function createWindow() {
         height: 768,
         icon: path.join(__dirname, nrIcon),
         fullscreenable: true,
+        autoHideMenuBar: false,
         kiosk: kioskMode,
-        autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: false
         }
     });
+    
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
 
+    if (process.platform !== 'darwin') { mainWindow.autoHideMenuBar(true); }
     mainWindow.loadURL(`file://${__dirname}/load.html`);
-    //if (process.platform !== 'darwin') { mainWindow.setAutoHideMenuBar(true); }
 
     mainWindow.webContents.on('did-get-response-details', function(event, status, newURL, originalURL, httpResponseCode) {
         if ((httpResponseCode == 404) && (newURL == ("http://localhost:"+listenPort+urlStart))) {
