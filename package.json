@@ -64,8 +64,15 @@
         },
         "linux": {
             "target": [
-                "deb",
-                "rpm"
+                "rpm",
+                "apk",
+                {
+                    "target": "deb",
+                    "arch": [
+                        "x64",
+                        "armv7l"
+                    ]
+                }
             ],
             "synopsis": "Node-RED Low Code development",
             "category": "Development"
