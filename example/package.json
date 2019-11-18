@@ -1,0 +1,17 @@
+{
+    "name": "electron_node_red",
+    "description": "Electron Node-RED application starter kit for development",
+    "version": "1.0.2",
+    "dependencies": {
+        "node-red-contrib-play-audio": "*",
+        "node-red-contrib-web-worldmap": "*",
+        "node-red-dashboard": "*",
+        "node-red-node-base64": "*",
+        "node-red-node-geofence": "*",
+        "node-red-node-random": "*",
+        "node-red-node-smooth": "*"
+    },
+    "scripts": {
+        "start": "node node_modules/node-red/red.js -u . electronflow.json"
+    }
+}

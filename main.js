@@ -50,7 +50,7 @@ red_app.use("/",express.static("web"));
 // Create a server
 var server = http.createServer(red_app);
 
-// Setup user directory and flowfile
+// Setup user directory and flowfile (if editable)
 var userdir = __dirname;
 if (editable) {
     // if running as raw electron use the current directory (mainly for dev)

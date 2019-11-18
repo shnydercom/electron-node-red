@@ -45,6 +45,12 @@ then retry the command.
 
 Runtimes are created in the `dist` directory under the `electron-node-red` project.
 
+The `merger.js` utility can be pointed at an existing Node-RED projects directory and it will try to copy over and package up the relevant files into this project ready to install and build - so the simple flow would be
+
+```
+./merger.js {path to my Node-RED project directory} && yarn && yarn start
+```
+
 ### Building for other platforms
 
 Generally you can just add the required parameter to the command
