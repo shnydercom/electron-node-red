@@ -3,6 +3,15 @@
     "version": "1.0.2",
     "description": "Electron Node-RED application starter kit for development",
     "main": "main.js",
+    "NRelectron": {
+        "productName": "Node-RED Electron",
+        "editable": true,
+        "allowLoadSave": false,
+        "showMap": false,
+        "kioskMode": false,
+        "flowFile": "electronflow.json",
+        "start": "dashboard"
+    },
     "scripts": {
         "pack": "electron-builder --dir",
         "dist": "electron-builder",
@@ -44,15 +53,6 @@
     "devDependencies": {
         "electron": "^7.1.1",
         "electron-builder": "^22.1.0"
-    },
-    "NRelectron": {
-        "productName": "Node-RED Electron",
-        "editable": true,
-        "allowLoadSave": false,
-        "showMap": false,
-        "kioskMode": false,
-        "flowFile": "electronflow.json",
-        "start": "dashboard"
     },
     "build": {
         "appId": "com.electron.node-red",
