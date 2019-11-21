@@ -1,6 +1,6 @@
 {
     "name": "electron_node_red",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Electron Node-RED application starter kit for development",
     "main": "main.js",
     "NRelectron": {
@@ -8,7 +8,7 @@
         "editable": true,
         "allowLoadSave": false,
         "showMap": false,
-        "kioskMode": false, 
+        "kioskMode": false,
         "flowFile": "electronflow.json",
         "start": "editor"
     },
@@ -27,7 +27,7 @@
     "dependencies": {
         "electron-is-dev": "*",
         "express": "^4.17.1",
-        "node-red": "1.0.2"
+        "node-red": "1.0.3"
     },
     "keywords": [
         "electron",
