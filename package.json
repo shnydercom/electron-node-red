@@ -25,16 +25,16 @@
         "url": "git+https://github.com/dceejay/electron-node-red.git"
     },
     "dependencies": {
+        "electron-is-dev": "*",
+        "express": "^4.17.1",
+        "node-red": "1.0.3",
         "node-red-contrib-play-audio": "*",
         "node-red-contrib-web-worldmap": "*",
         "node-red-dashboard": "*",
         "node-red-node-base64": "*",
         "node-red-node-geofence": "*",
         "node-red-node-random": "*",
-        "node-red-node-smooth": "*",
-        "electron-is-dev": "*",
-        "express": "^4.17.1",
-        "node-red": "1.0.3"
+        "node-red-node-smooth": "*"
     },
     "keywords": [
         "electron",
@@ -51,8 +51,8 @@
     },
     "homepage": "https://github.com/dceejay/electron-node-red#readme",
     "devDependencies": {
-        "electron": "^7.1.1",
-        "electron-builder": "^22.1.0"
+        "electron": "^7.1.4",
+        "electron-builder": "^21.2.0"
     },
     "build": {
         "appId": "com.electron.node-red",
