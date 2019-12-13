@@ -330,7 +330,7 @@ function createWindow() {
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
 
-    if (process.platform !== 'darwin') { mainWindow.autoHideMenuBar(true); }
+    if (process.platform !== 'darwin') { mainWindow.setAutoHideMenuBar(true); }
     mainWindow.loadURL(`file://${__dirname}/load.html`);
 
     mainWindow.webContents.on('did-get-response-details', function(event, status, newURL, originalURL, httpResponseCode) {
