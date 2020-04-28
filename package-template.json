@@ -9,6 +9,7 @@
         "allowLoadSave": false,
         "showMap": false,
         "kioskMode": false,
+        "addNodes": true,
         "flowFile": "electronflow.json",
         "start": "editor"
     },

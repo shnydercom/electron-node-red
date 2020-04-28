@@ -72,7 +72,7 @@ Runtimes are created in the `dist` directory under the `electron-node-red` proje
 Generally you can just add the required parameter to the command
 
 ```bash
-yarn && yarn dist -w        // for windows
+yarn && yarn dist -w        // for windows (see below for building on Mac Catalina)
 yarn && yarn dist -l        // for linux
 yarn && yarn dist -m        // for mac
 ```

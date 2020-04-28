@@ -6,10 +6,11 @@ if (pkg.hasOwnProperty("NRelectron")) { options = pkg["NRelectron"] }
 
 // Some settings you can edit if you don't set them in package.json
 //console.log(options)
-const editable = options.editable || true;       // set this to false to create a run only application - no editor/no console
+const editable = options.editable || true;      // set this to false to create a run only application - no editor/no console
 const allowLoadSave = options.allowLoadSave || false; // set to true to allow import and export of flow file
 const showMap = options.showMap || false;       // set to true to add Worldmap to the menu
-const kioskMode = options.kioskMode || false;     // set to true to start in kiosk mode
+const kioskMode = options.kioskMode || false;   // set to true to start in kiosk mode
+const addNodes = options.addNodes || true;      // set to false to block installing extra nodes
 let flowfile = options.flowFile || 'electronflow.json'; // default Flows file name - loaded at start
 
 const urldash = "/ui/#/0";          // url for the dashboard page
@@ -112,7 +113,7 @@ var settings = {
     httpNodeRoot: "/",
     userDir: userdir,
     flowFile: flowfile,
-    editorTheme: { projects:{ enabled:false } },    // enable projects feature
+    editorTheme: { projects:{ enabled:false }, palette: { editable:addNodes } },    // enable projects feature
     functionGlobalContext: { },    // enables global context - add extras ehre if you need them
     logging: {
         websock: {
@@ -353,6 +354,19 @@ function createWindow() {
         option.width = w.width;
         option.height = w.height;
     })
+
+    mainWindow.on('close', function(e) {
+        const choice = require('electron').dialog.showMessageBoxSync(this, {
+            type: 'question',
+            icon: nrIcon,
+            buttons: ['Yes', 'No'],
+            title: 'Confirm',
+            message: 'Are you sure you want to quit?'
+        });
+        if (choice === 1) {
+            e.preventDefault();
+        }
+    });
 
     mainWindow.on('closed', () => {
         mainWindow = null;
