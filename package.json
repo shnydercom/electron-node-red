@@ -9,6 +9,7 @@
         "allowLoadSave": false,
         "showMap": false,
         "kioskMode": false,
+        "addNodes": true,
         "flowFile": "electronflow.json",
         "start": "dashboard"
     },
@@ -25,7 +26,7 @@
         "url": "git+https://github.com/dceejay/electron-node-red.git"
     },
     "dependencies": {
-        "electron-is-dev": "~1.2.0",
+        "electron-is-dev": "^1.2.0",
         "express": "^4.17.1",
         "node-red": "1.0.6",
         "node-red-contrib-play-audio": "*",
@@ -57,7 +58,7 @@
     "build": {
         "appId": "com.electron.node-red",
         "productName": "Node-RED Electron",
-        "copyright": "Copyright © 2019 D.Conway-Jones",
+        "copyright": "Copyright © 2018,2020 D.Conway-Jones",
         "mac": {
             "category": "public.app-category.developer-tools",
             "target": "dmg"

@@ -28,9 +28,9 @@ build parameters, product name, whether you want the app version to be editable,
 
 The app name, version and description are picked up from the package.json file of the original project.
 
-When running using yarn start - the flow file is picked from the current directory. When running as an app (but only if editable), then the flow file is copied into the users `.node-red` directory and is read and written from there. The deafult name can be changed in the package.json file if required.
+When running using yarn start - the flow file is picked from the current directory. When running as an app (but only if editable), then the flow file is copied into the users `.node-red` directory and is read and written from there. The default name can be changed in the package.json file if required.
 
-**NOTE**: Currently the settings are set around line 109 of the `main.js` file. If you do use any
+**NOTE**: Currently the settings are set around line 110 of the `main.js` file. If you do use any
 custom settings then currently you will need to modify this manually.
 
 ## Configuring the project for building
@@ -72,7 +72,7 @@ Runtimes are created in the `dist` directory under the `electron-node-red` proje
 Generally you can just add the required parameter to the command
 
 ```bash
-yarn && yarn dist -w        // for windows (see below for building on Mac Catalina)
+yarn && yarn dist -w        // for windows (but use multi-platform builder below for building on Mac Catalina)
 yarn && yarn dist -l        // for linux
 yarn && yarn dist -m        // for mac
 ```

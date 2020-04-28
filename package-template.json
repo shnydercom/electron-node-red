@@ -1,6 +1,6 @@
 {
     "name": "electron_node_red",
-    "version": "1.0.3",
+    "version": "1.0.6",
     "description": "Electron Node-RED application starter kit for development",
     "main": "main.js",
     "NRelectron": {
@@ -26,9 +26,9 @@
         "url": "git+https://github.com/dceejay/electron-node-red.git"
     },
     "dependencies": {
-        "electron-is-dev": "*",
+        "electron-is-dev": "^1.2.0",
         "express": "^4.17.1",
-        "node-red": "1.0.3"
+        "node-red": "1.0.6"
     },
     "keywords": [
         "electron",
@@ -45,13 +45,13 @@
     },
     "homepage": "https://github.com/dceejay/electron-node-red#readme",
     "devDependencies": {
-        "electron": "^7.1.1",
-        "electron-builder": "^22.1.0"
+        "electron": "^7.2.1",
+        "electron-builder": "^22.5.1"
     },
     "build": {
         "appId": "com.electron.node-red",
         "productName": "Node-RED Electron",
-        "copyright": "Copyright © 2019 D.Conway-Jones",
+        "copyright": "Copyright © 2018,2020 D.Conway-Jones",
         "mac": {
             "category": "public.app-category.developer-tools",
             "target": "dmg"
