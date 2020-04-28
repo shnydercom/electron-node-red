@@ -59,7 +59,6 @@
         "linux": {
             "target": [
                 "rpm",
-                "apk",
                 {
                     "target": "deb",
                     "arch": [
