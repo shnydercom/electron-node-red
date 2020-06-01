@@ -40,6 +40,7 @@ const {app, Menu} = electron;
 const ipc = electron.ipcMain;
 const dialog = electron.dialog;
 const BrowserWindow = electron.BrowserWindow;
+const Tray = electron.Tray;
 
 var RED = require("node-red");
 var red_app = express();
@@ -100,6 +101,7 @@ if (editable) {
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let conWindow;
+let tray;
 let logBuffer = [];
 let logLength = 250;    // No. of lines of console log to keep.
 const levels = [ "", "fatal", "error", "warn", "info", "debug", "trace" ];
@@ -379,8 +381,35 @@ function createWindow() {
     //mainWindow.webContents.openDevTools();
 }
 
+// Create the tray icon and context menu
+function createTray() {
+    tray = new Tray(path.join(__dirname, "nrtray.png"));
+    const contextMenu = Menu.buildFromTemplate([
+        {
+            label: 'Show',
+            click: function() {
+                mainWindow.show();
+            }
+        },
+        {
+            label: 'Quit',
+            click: function() {
+                app.quit();
+            }
+        }
+    ]);
+    tray.setToolTip('Node-RED Electron application.')
+    tray.setContextMenu(contextMenu);
+}
+
+
 // Called when Electron has finished initialization and is ready to create browser windows.
-app.on('ready', createWindow );
+app.on('ready', () => {
+    createTray()
+    createWindow()
+})
+
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -405,6 +434,8 @@ if (process.platform === 'darwin') {
         copyright: "Copyright © 2019, "+pkg.author.name,
         credits: "Node-RED and other components are copyright the JS Foundation and other contributors."
     });
+    // Don't show in the dock bar if you like
+    //app.dock.hide();
 }
 
 // Start the Node-RED runtime, then load the inital dashboard page
