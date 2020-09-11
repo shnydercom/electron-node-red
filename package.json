@@ -59,10 +59,11 @@
         "appId": "com.electron.node-red",
         "productName": "Node-RED Electron",
         "copyright": "Copyright © 2018,2020 D.Conway-Jones",
-        "extraResources": [
+        "files": [
+            "**/*", 
             {
                "from": "node_modules/@node-red/nodes/examples",
-                "to": "app/node_modules/@node-red/nodes/examples"
+                "to": "node_modules/@node-red/nodes/examples"
             }
         ],
         "mac": {
