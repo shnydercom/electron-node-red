@@ -36,11 +36,12 @@ const express = require("express");
 const electron = require('electron');
 const isDev = require('electron-is-dev');
 
-const {app, Menu} = electron;
+const {app, Menu, TouchBar} = electron;
 const ipc = electron.ipcMain;
 const dialog = electron.dialog;
 const BrowserWindow = electron.BrowserWindow;
 const Tray = electron.Tray;
+const { TouchBarButton } = TouchBar;
 
 var RED = require("node-red");
 var red_app = express();
@@ -214,7 +215,7 @@ if (!editable) {
 if (!allowLoadSave) { template[0].submenu.splice(0,2); }
 
 // Top and tail menu on Mac
-if (process.platform === 'darwin') { 
+if (process.platform === 'darwin') {
     template[0].submenu.unshift({ type: 'separator' });
     template[0].submenu.unshift({ label: "About "+options.productName||"Node-RED Electron", selector: "orderFrontStandardAboutPanel:" });
     template[0].submenu.unshift({ type: 'separator' });
@@ -313,6 +314,15 @@ function createConsole() {
         conWindow = null;
     });
     //conWindow.webContents.openDevTools();
+    const touchButton4 = new TouchBarButton({
+        label: 'Clear Log',
+        backgroundColor: '#910000',
+        click: () => { logBuffer = []; conWindow.webContents.send('logBuff', logBuffer); }
+    });
+    const consoleTouchBar = new TouchBar({
+        items: [ touchButton4 ]
+    });
+    conWindow.setTouchBar(consoleTouchBar);
 }
 
 // Create the main browser window
@@ -329,7 +339,7 @@ function createWindow() {
             nodeIntegration: false
         }
     });
-    
+
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
 
@@ -374,6 +384,35 @@ function createWindow() {
         mainWindow = null;
     });
 
+    // If on a Mac add some touchbar buttons...
+    if (process.platform === 'darwin') {
+        const touchButton1 = new TouchBarButton({
+            label: 'Editor',
+            backgroundColor: '#910000',
+            click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
+        });
+
+        const touchButton2 = new TouchBarButton({
+            label: 'Dashboard',
+            backgroundColor: '#910000',
+            click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urldash); }
+        });
+
+        const touchButton3 = new TouchBarButton({
+            label: 'Map',
+            backgroundColor: '#910000',
+            click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urlmap); }
+        });
+
+        var items = [ touchButton2 ];
+        if (editable) { items.push(touchButton1) }
+        if (showMap) { items.push(touchButton3) }
+
+        const mainTouchBar = new TouchBar({ items: items });
+
+        mainWindow.setTouchBar(mainTouchBar);
+    }
+
     // Start the app full screen
     //mainWindow.setFullScreen(true)
 
@@ -410,7 +449,6 @@ app.on('ready', () => {
 })
 
 
-
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
     // On OS X it is common for applications and their menu bar
@@ -427,7 +465,7 @@ app.on('activate', function() {
     }
 });
 
-if (process.platform === 'darwin') {   
+if (process.platform === 'darwin') {
     app.setAboutPanelOptions({
         applicationVersion: pkg.version,
         version: pkg.dependencies["node-red"],
