@@ -116,7 +116,12 @@ var settings = {
     httpNodeRoot: "/",
     userDir: userdir,
     flowFile: flowfile,
-    editorTheme: { projects:{ enabled:false }, palette: { editable:addNodes } },    // enable projects feature
+    flowFilePretty: true,
+    editorTheme: {
+        projects:{ enabled:false },
+        header: { title: options.productName },
+        palette: { editable:addNodes }
+    },    // enable projects feature
     functionGlobalContext: { },    // enables global context - add extras ehre if you need them
     logging: {
         websock: {
@@ -242,50 +247,56 @@ if (isDev) {
     })
 }
 
-let fileName = "";
+let fileName = path.join(userdir,flowfile);
 function saveFlow() {
-    dialog.showSaveDialog({
+    const file_path = dialog.showSaveDialogSync({
+        title:"Save Flow As",
         filters:[{ name:'JSON', extensions:['json'] }],
-        defaultPath: fileName
-    }, function(file_path) {
-        if (file_path) {
-            var flo = JSON.stringify(RED.nodes.getFlows().flows);
-            fs.writeFile(file_path, flo, function(err) {
-                if (err) { dialog.showErrorBox('Error', err); }
-                else {
-                    dialog.showMessageBox({
-                        icon: nrIcon,
-                        message:"Flow file saved as\n\n"+file_path,
-                        buttons: ["OK"]
-                    });
-                }
-            });
-        }
+        properties: ["showHiddenFiles"],
+        defaultPath: fileName,
+        buttonLabel: "Save Flow"
     });
+    if (file_path) {
+        var flo = JSON.stringify(RED.nodes.getFlows().flows, null , 2);
+        fs.writeFile(file_path, flo, function(err) {
+            if (err) { dialog.showErrorBox('Error', err); }
+            else {
+                dialog.showMessageBoxSync({
+                    icon: nrIcon,
+                    message:"Flow file saved as\n\n"+file_path,
+                    buttons: ["OK"]
+                });
+            }
+        });
+    }
 }
 
 function openFlow() {
-    dialog.showOpenDialog({ filters:[{ name:'JSON', extensions:['json']} ]},
-        function (fileNames) {
-            if (fileNames && fileNames.length > 0) {
-                fs.readFile(fileNames[0], 'utf-8', function (err, data) {
-                    try {
-                        var flo = JSON.parse(data);
-                        if (Array.isArray(flo) && (flo.length > 0)) {
-                            RED.nodes.setFlows(flo,"full");
-                            fileName = fileNames[0];
-                        }
-                        else {
-                            dialog.showErrorBox("Error", "Failed to parse flow file.\n\n  "+fileNames[0]+".\n\nAre you sure it's a flow file ?");
-                        }
-                    }
-                    catch(e) {
-                        dialog.showErrorBox("Error", "Failed to load flow file.\n\n  "+fileNames[0]);
-                    }
-                });
+    const fileNames = dialog.showOpenDialogSync({
+        title:"Load Flow File",
+        filters:[{ name:'JSON', extensions:['json'] }],
+        properties: ["openFile","showHiddenFiles"],
+        defaultPath: fileName,
+        buttonLabel: "Load Flow"
+    });
+    if (fileNames && fileNames.length > 0) {
+        fs.readFile(fileNames[0], 'utf-8', function (err, data) {
+            try {
+                var flo = JSON.parse(data);
+                if (Array.isArray(flo) && (flo.length > 0)) {
+                    fileName = fileNames[0];
+                    RED.nodes.setFlows(flo,"full");
+                }
+                else {
+                    dialog.showErrorBox("Error", "Failed to parse flow file.\n\n  "+fileNames[0]+".\n\nAre you sure it's a flow file ?");
+                }
             }
-        }
-    )
+            catch(e) {
+                dialog.showErrorBox("Error", "Failed to load flow file.\n\n  "+fileNames[0]);
+            }
+        });
+    }
+
 }
 
 // Create the console log window
@@ -298,6 +309,7 @@ function createConsole() {
         height: 600,
         icon: path.join(__dirname, nrIcon),
         autoHideMenuBar: true,
+        titleBarStyle: "hidden",
         webPreferences: {
             nodeIntegration: true
         }
@@ -334,6 +346,7 @@ function createWindow() {
         icon: path.join(__dirname, nrIcon),
         fullscreenable: true,
         autoHideMenuBar: false,
+        titleBarStyle: "hidden",
         kiosk: kioskMode,
         webPreferences: {
             nodeIntegration: false

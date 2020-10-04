@@ -4,7 +4,7 @@
     "description": "Electron Node-RED application starter kit for development",
     "main": "main.js",
     "NRelectron": {
-        "productName": "Node-RED Electron",
+        "productName": "Node-RED Electron App",
         "editable": true,
         "allowLoadSave": false,
         "showMap": false,
