@@ -6,11 +6,11 @@ if (pkg.hasOwnProperty("NRelectron")) { options = pkg["NRelectron"] }
 
 // Some settings you can edit if you don't set them in package.json
 //console.log(options)
-const editable = options.editable || true;      // set this to false to create a run only application - no editor/no console
+const editable = options.editable || false;      // set this to false to create a run only application - no editor/no console
 const allowLoadSave = options.allowLoadSave || false; // set to true to allow import and export of flow file
 const showMap = options.showMap || false;       // set to true to add Worldmap to the menu
 const kioskMode = options.kioskMode || false;   // set to true to start in kiosk mode
-const addNodes = options.addNodes || true;      // set to false to block installing extra nodes
+const addNodes = options.addNodes || false;      // set to false to block installing extra nodes
 let flowfile = options.flowFile || 'electronflow.json'; // default Flows file name - loaded at start
 
 const urldash = "/ui/#/0";          // url for the dashboard page
@@ -35,6 +35,8 @@ const http = require('http');
 const express = require("express");
 const electron = require('electron');
 const isDev = require('electron-is-dev');
+const Store = require('electron-store');
+const store = new Store();
 
 const {app, Menu, TouchBar} = electron;
 const ipc = electron.ipcMain;
@@ -55,7 +57,7 @@ var server = http.createServer(red_app);
 
 // Setup user directory and flowfile (if editable)
 var userdir = __dirname;
-if (editable) {
+if (editable === true) {
     // if running as raw electron use the current directory (mainly for dev)
     if (process.argv[1] && (process.argv[1] === "main.js")) {
         userdir = __dirname;
@@ -66,6 +68,7 @@ if (editable) {
             else {
                 flowfile = path.join(process.cwd(),process.argv[process.argv.length-1]);
             }
+            store.set("electronFlow",flowfile)
         }
     }
     else { // We set the user directory to be in the users home directory...
@@ -80,6 +83,7 @@ if (editable) {
             else {
                 flowfile = path.join(process.cwd(),process.argv[process.argv.length-1]);
             }
+            store.set("electronFlow",flowfile)
         }
         else {
             if (!fs.existsSync(userdir+"/"+flowfile)) {
@@ -89,13 +93,18 @@ if (editable) {
             if (fs.existsSync(__dirname+"/"+credFile) && !fs.existsSync(userdir+"/"+credFile)) {
                 fs.writeFileSync(userdir+"/"+credFile, fs.readFileSync(__dirname+"/"+credFile));
             }
+            flowfile = path.join(userdir,flowfile);
         }
     }
 }
+else { store.clear(); }
+
+flowfile = store.get('electronFlow',flowfile);
+
 // console.log("CWD",process.cwd());
 // console.log("DIR",__dirname);
 // console.log("UserDir :",userdir);
-// console.log("FlowFile :",flowfile);
+console.log("FlowFile :",flowfile);
 // console.log("PORT",listenPort);
 
 // Keep a global reference of the window objects, if you don't, the window will
@@ -168,7 +177,7 @@ red_app.use(settings.httpNodeRoot,RED.httpNode);
 var template = [{
     label: "View",
     submenu: [
-        {   label: 'Import Flow',
+        {   label: 'Open Flow',
             accelerator: "Shift+CmdOrCtrl+O",
             click() { openFlow(); }
         },
@@ -247,13 +256,12 @@ if (isDev) {
     })
 }
 
-let fileName = path.join(userdir,flowfile);
 function saveFlow() {
     const file_path = dialog.showSaveDialogSync({
         title:"Save Flow As",
         filters:[{ name:'JSON', extensions:['json'] }],
         properties: ["showHiddenFiles"],
-        defaultPath: fileName,
+        defaultPath: flowfile,
         buttonLabel: "Save Flow"
     });
     if (file_path) {
@@ -261,11 +269,14 @@ function saveFlow() {
         fs.writeFile(file_path, flo, function(err) {
             if (err) { dialog.showErrorBox('Error', err); }
             else {
+                store.set("electronFlow",file_path);
                 dialog.showMessageBoxSync({
                     icon: nrIcon,
                     message:"Flow file saved as\n\n"+file_path,
                     buttons: ["OK"]
                 });
+                app.relaunch();
+                app.exit();
             }
         });
     }
@@ -276,7 +287,7 @@ function openFlow() {
         title:"Load Flow File",
         filters:[{ name:'JSON', extensions:['json'] }],
         properties: ["openFile","showHiddenFiles"],
-        defaultPath: fileName,
+        defaultPath: flowfile,
         buttonLabel: "Load Flow"
     });
     if (fileNames && fileNames.length > 0) {
@@ -284,8 +295,10 @@ function openFlow() {
             try {
                 var flo = JSON.parse(data);
                 if (Array.isArray(flo) && (flo.length > 0)) {
-                    fileName = fileNames[0];
-                    RED.nodes.setFlows(flo,"full");
+                    //RED.nodes.setFlows(flo,"full");
+                    store.set("electronFlow",fileNames[0]);
+                    app.relaunch();
+                    app.exit();
                 }
                 else {
                     dialog.showErrorBox("Error", "Failed to parse flow file.\n\n  "+fileNames[0]+".\n\nAre you sure it's a flow file ?");
@@ -296,7 +309,6 @@ function openFlow() {
             }
         });
     }
-
 }
 
 // Create the console log window
@@ -454,13 +466,11 @@ function createTray() {
     tray.setContextMenu(contextMenu);
 }
 
-
 // Called when Electron has finished initialization and is ready to create browser windows.
 app.on('ready', () => {
     createTray()
     createWindow()
 })
-
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -482,7 +492,7 @@ if (process.platform === 'darwin') {
     app.setAboutPanelOptions({
         applicationVersion: pkg.version,
         version: pkg.dependencies["node-red"],
-        copyright: "Copyright © 2019, "+pkg.author.name,
+        copyright: "Copyright © 2020 "+pkg.author.name,
         credits: "Node-RED and other components are copyright the JS Foundation and other contributors."
     });
     // Don't show in the dock bar if you like

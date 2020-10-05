@@ -1,89 +1,116 @@
 [
     {
-        "id": "5ab56e5e.449a5",
+        "id": "41f61d2.fbe09e4",
         "type": "tab",
         "label": "Flow 1"
     },
     {
-        "id": "6f60da71.efaf84",
-        "type": "ui_link",
-        "z": "",
-        "name": "Big Map",
-        "link": "/worldmap/",
-        "icon": "open_in_browser",
-        "target": "iframe",
-        "order": 5
+        "id": "52a903f3.ad56fc",
+        "type": "ui_tab",
+        "z": "41f61d2.fbe09e4",
+        "name": "My Simple Dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
     },
     {
-        "id": "4b23a5d6.33335c",
+        "id": "30e652f.d9de3ae",
+        "type": "ui_group",
+        "z": "41f61d2.fbe09e4",
+        "name": "Panel 2",
+        "tab": "52a903f3.ad56fc",
+        "order": 4,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "a8ecb9.c60f4348",
+        "type": "ui_group",
+        "z": "41f61d2.fbe09e4",
+        "name": "Introduction",
+        "tab": "52a903f3.ad56fc",
+        "order": 1,
+        "disp": false,
+        "width": "3"
+    },
+    {
+        "id": "bbdf3e02.e8fee",
+        "type": "ui_group",
+        "z": "41f61d2.fbe09e4",
+        "name": "Panel 1",
+        "tab": "52a903f3.ad56fc",
+        "order": 2,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "d9ba26fa.6d2b18",
         "type": "ui_base",
         "theme": {
-            "name": "theme-custom",
+            "name": "theme-light",
             "lightTheme": {
                 "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "Helvetica Neue,Helvetica,sans-serif",
+                "baseColor": "#8e0d17",
+                "baseFont": "Copperplate,Copperplate Gothic Light,fantasy",
                 "edited": true,
                 "reset": false
             },
             "darkTheme": {
                 "default": "#097479",
                 "baseColor": "#097479",
-                "baseFont": "Tahoma,Geneva,sans-serif",
-                "edited": true,
-                "reset": false
+                "baseFont": "Helvetica Neue",
+                "edited": false
             },
             "customTheme": {
                 "name": "Untitled Theme 1",
-                "baseColor": "#c61e51",
-                "default": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "reset": false
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "Helvetica Neue"
             },
             "themeState": {
                 "base-color": {
-                    "default": "#bb1841",
-                    "value": "#bb1841",
+                    "default": "#0094CE",
+                    "value": "#d80005",
                     "edited": true
                 },
+                "page-titlebar-backgroundColor": {
+                    "value": "#8e0d17",
+                    "edited": false
+                },
                 "page-backgroundColor": {
-                    "value": "#111111",
+                    "value": "#fafafa",
                     "edited": false
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#000000",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#c61e51",
-                    "edited": false
-                },
-                "group-backgroundColor": {
                     "value": "#333333",
-                    "edited": true
+                    "edited": false
                 },
                 "group-textColor": {
-                    "value": "#e44d7a",
+                    "value": "#d41322",
                     "edited": false
                 },
                 "group-borderColor": {
-                    "value": "#555555",
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "widget-textColor": {
-                    "value": "#eeeeee",
+                    "value": "#111111",
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#c61e51",
+                    "value": "#8e0d17",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#242424",
-                    "edited": true
+                    "value": "#ffffff",
+                    "edited": false
                 },
                 "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                    "value": "Copperplate,Copperplate Gothic Light,fantasy"
                 }
             },
             "angularTheme": {
@@ -95,6 +122,9 @@
         },
         "site": {
             "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
             "sizes": {
                 "sx": 48,
                 "sy": 48,
@@ -102,2082 +132,483 @@
                 "gy": 6,
                 "cx": 6,
                 "cy": 6,
-                "px": 3,
-                "py": 3
-            },
-            "hideToolbar": "false",
-            "allowSwipe": "true",
-            "dateFormat": "DD/MM/YY",
-            "lockMenu": "false"
+                "px": 0,
+                "py": 0
+            }
         }
     },
     {
-        "id": "c60f4e05.ebb48",
-        "type": "ui_group",
-        "z": "5ab56e5e.449a5",
-        "name": "Map",
-        "tab": "6a3aec18.0bc474",
-        "order": 1,
-        "disp": true,
-        "width": "6"
-    },
-    {
-        "id": "6a3aec18.0bc474",
-        "type": "ui_tab",
-        "z": "5ab56e5e.449a5",
-        "name": "Home",
-        "icon": "dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "3581a844.66d9e8",
-        "type": "ui_tab",
-        "z": "",
-        "name": "Charts",
-        "icon": "dashboard",
-        "order": 4
-    },
-    {
-        "id": "d9a5a546.3dbcf8",
+        "id": "87356b62.92e3d8",
         "type": "ui_group",
         "z": "",
-        "name": "Group 1",
-        "tab": "3581a844.66d9e8",
-        "order": 1,
+        "name": "Text to Speech",
+        "tab": "52a903f3.ad56fc",
+        "order": 5,
         "disp": true,
         "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "597c8cca.c0ad24",
-        "type": "ui_group",
-        "z": "",
-        "name": "Group 2",
-        "tab": "3581a844.66d9e8",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "33fabf90.2fdae",
-        "type": "ui_group",
-        "z": "",
-        "name": "Group 3",
-        "tab": "3581a844.66d9e8",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "ebf91bb0.042f48",
-        "type": "ui_tab",
-        "z": "",
-        "name": "Gauges",
-        "icon": "dashboard",
-        "order": 2
-    },
-    {
-        "id": "db98e5e4.57a268",
-        "type": "ui_group",
-        "z": "",
-        "name": "Dials1",
-        "tab": "ebf91bb0.042f48",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "1804b9dc.fd1e66",
-        "type": "ui_group",
-        "z": "",
-        "name": "Inputs",
-        "tab": "ebf91bb0.042f48",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "f822616a.38524",
-        "type": "ui_group",
-        "z": "",
-        "name": "Dials2",
-        "tab": "ebf91bb0.042f48",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "b086b2d2.2e47b",
-        "type": "ui_group",
-        "name": "Group 3",
-        "tab": null,
-        "order": 3,
-        "disp": true,
-        "width": 6
-    },
-    {
-        "id": "d5b824b2.e53e58",
-        "type": "ui_group",
-        "z": "",
-        "name": "Group 4",
-        "tab": "3581a844.66d9e8",
-        "order": 4,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "ba1b0dd3.85941",
-        "type": "ui_group",
-        "z": "",
-        "name": "Small",
-        "tab": "ebf91bb0.042f48",
-        "order": 4,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "877f1e00.c03ff",
-        "type": "ui_tab",
-        "z": "",
-        "name": "Big gauge page",
-        "icon": "dashboard",
-        "order": 3
-    },
-    {
-        "id": "1b56aad7.5752e5",
-        "type": "ui_group",
-        "z": "",
-        "name": "Group 1",
-        "tab": "877f1e00.c03ff",
-        "order": 1,
-        "disp": true,
-        "width": "8"
-    },
-    {
-        "id": "d32ebde8.b3228",
-        "type": "ui_group",
-        "z": "",
-        "name": "Group 2",
-        "tab": "877f1e00.c03ff",
-        "order": 2,
-        "disp": true,
-        "width": "6"
-    },
-    {
-        "id": "8fe29e0c.e102e",
-        "type": "ui_group",
-        "name": "Group 3",
-        "tab": "877f1e00.c03ff",
-        "order": 3,
-        "disp": true,
-        "width": 6
-    },
-    {
-        "id": "4adac02f.cc3e7",
-        "type": "ui_group",
-        "z": "",
-        "name": "Group 4",
-        "tab": "877f1e00.c03ff",
-        "order": 4,
-        "disp": true,
-        "width": "12",
         "collapse": false
     },
     {
-        "id": "7a6f203.31275e",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1b56aad7.5752e5",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "319ba9bf.f2c9b6",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1b56aad7.5752e5",
-        "order": 7,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "ce1d8bf0.737928",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1b56aad7.5752e5",
-        "order": 8,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "920e7adb.7e4048",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "1b56aad7.5752e5",
-        "order": 11,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "2ddc6c22.f56604",
-        "type": "inject",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 120,
-        "y": 60,
-        "wires": [
-            [
-                "fbc32db5.f3411"
-            ]
-        ]
-    },
-    {
-        "id": "fbc32db5.f3411",
-        "type": "function",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "func": "msg.payload={lat:51.05,lon:-1.05,name:\"Joe\",icon:\"male\",radius:2500};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 60,
-        "wires": [
-            [
-                "104f9b89.5daf04"
-            ]
-        ]
-    },
-    {
-        "id": "104f9b89.5daf04",
-        "type": "worldmap",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "lat": "",
-        "lon": "",
-        "zoom": "",
-        "layer": "OSM",
-        "cluster": "0",
-        "maxage": "",
-        "usermenu": "show",
-        "layers": "show",
-        "panit": "true",
-        "panlock": "false",
-        "zoomlock": "false",
-        "hiderightclick": "false",
-        "coords": "none",
-        "path": "",
-        "x": 510,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "127a1529.9b5c8b",
-        "type": "inject",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 120,
-        "y": 100,
-        "wires": [
-            [
-                "1544450f.023d3b"
-            ]
-        ]
-    },
-    {
-        "id": "1544450f.023d3b",
-        "type": "function",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "func": "msg.payload={lat:51.05,lon:-2.05,name:\"Fred\",radius:3000};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 100,
-        "wires": [
-            [
-                "104f9b89.5daf04"
-            ]
-        ]
-    },
-    {
-        "id": "7892d55a.40864c",
-        "type": "inject",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 121,
-        "y": 228,
-        "wires": [
-            [
-                "45dc04c5.811fcc"
-            ]
-        ]
-    },
-    {
-        "id": "45dc04c5.811fcc",
-        "type": "function",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "func": "// create random position\nvar lat = 51 + Math.random() * 0.2;\nvar lon = -1.45 + Math.random() * 0.2;\nmsg.payload={lat:lat, lon:lon, name:\"Mike\", icon:\"male\", url:\"<a href=\\\"/red/ui/#/0\\\">IBM link</a>\"};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 280,
-        "wires": [
-            [
-                "104f9b89.5daf04",
-                "37dc2b31.4edcd4"
-            ]
-        ]
-    },
-    {
-        "id": "9756dc2b.55138",
-        "type": "ui_button",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "8fe29e0c.e102e",
-        "order": 6,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "button",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "fa-random",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 110,
-        "y": 440,
-        "wires": [
-            [
-                "d4fcec5d.d6d7d"
-            ]
-        ]
-    },
-    {
-        "id": "d4fcec5d.d6d7d",
-        "type": "random",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "low": "1",
-        "high": "6",
-        "inte": "true",
-        "x": 300,
-        "y": 440,
-        "wires": [
-            [
-                "fac8dd24.4b417"
-            ]
-        ]
-    },
-    {
-        "id": "fac8dd24.4b417",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "8fe29e0c.e102e",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 470,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "39ae2a4d.5a6f06",
-        "type": "inject",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "topic": "",
-        "payload": "/worldmap",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "x": 130,
-        "y": 340,
-        "wires": [
-            [
-                "a8660ccf.d7166"
-            ]
-        ]
-    },
-    {
-        "id": "be72c0ae.5925b",
-        "type": "ui_template",
-        "z": "5ab56e5e.449a5",
-        "group": "c60f4e05.ebb48",
-        "name": "",
-        "order": 1,
+        "id": "c75ad4f0.0cede8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Map",
+        "tab": "52a903f3.ad56fc",
+        "order": 3,
+        "disp": true,
         "width": "6",
-        "height": "6",
-        "format": "<div ng-bind-html=\"msg.payload | trusted\"></div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
+        "collapse": true
+    },
+    {
+        "id": "189cf871.681118",
+        "type": "ui_template",
+        "z": "41f61d2.fbe09e4",
+        "group": "a8ecb9.c60f4348",
+        "name": "Welcome",
+        "order": 1,
+        "width": "3",
+        "height": "9",
+        "format": "<h3>Welcome to the <font color=\"#CE2020\">Node-RED</font> Dashboard</h3>\n<p>On the right you will see a graph and a chart logging data from the sliders underneath.</p>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 480,
-        "y": 340,
+        "x": 93,
+        "y": 45,
         "wires": [
             []
         ]
     },
     {
-        "id": "a8660ccf.d7166",
-        "type": "template",
-        "z": "5ab56e5e.449a5",
+        "id": "9f19ee5c.beaef",
+        "type": "ui_chart",
+        "z": "41f61d2.fbe09e4",
         "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "<iframe src={{{payload}}} width=99% height=300px ></iframe>",
-        "x": 310,
-        "y": 340,
+        "group": "bbdf3e02.e8fee",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "label": "",
+        "chartType": "line",
+        "xformat": "HH:mm:ss",
+        "interpolate": "basis",
+        "nodata": "No Data",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": "",
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 2,
+        "x": 270,
+        "y": 200,
         "wires": [
-            [
-                "be72c0ae.5925b"
-            ]
+            [],
+            []
         ]
     },
     {
-        "id": "79411e5e.1af57",
-        "type": "ui_button",
-        "z": "5ab56e5e.449a5",
+        "id": "799d9318.fd385c",
+        "type": "ui_gauge",
+        "z": "41f61d2.fbe09e4",
         "name": "",
-        "group": "c60f4e05.ebb48",
+        "group": "30e652f.d9de3ae",
+        "order": 2,
+        "width": "",
+        "height": "",
+        "gtype": "gage",
+        "title": "Title",
+        "label": "gauge",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "x": 270,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6f18b200.666a4",
+        "type": "ui_button",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "group": "87356b62.92e3d8",
         "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "Move Mike",
+        "label": "press to talk",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-volume-up",
+        "payload": "Hello to Jason Isaacs",
+        "payloadType": "str",
+        "topic": "",
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "f897d7c2.467a58"
+            ]
+        ]
+    },
+    {
+        "id": "f897d7c2.467a58",
+        "type": "ui_audio",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "group": "30e652f.d9de3ae",
+        "voice": "0",
+        "x": 300,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "da0f7e67.0d38a",
+        "type": "ui_slider",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "label": "slider",
+        "group": "30e652f.d9de3ae",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "799d9318.fd385c"
+            ]
+        ]
+    },
+    {
+        "id": "eabf2bd7.f4e0c8",
+        "type": "ui_slider",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "label": "slider",
+        "group": "bbdf3e02.e8fee",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "x": 90,
+        "y": 200,
+        "wires": [
+            [
+                "9f19ee5c.beaef"
+            ]
+        ]
+    },
+    {
+        "id": "45508d88.744a54",
+        "type": "function",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "func": "// create random position\nvar lat = 51 + Math.random() * 0.2;\nvar lon = -1.45 + Math.random() * 0.2;\nmsg.payload={lat:lat, lon:lon, name:\"Jason\", icon:\"male\", url:\"<a href=\\\"/red/ui/#/0\\\">IBM link</a>\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "576d953b.3e57dc",
+                "f9ae061e.76b048"
+            ]
+        ]
+    },
+    {
+        "id": "6ca8cfc2.e0bce",
+        "type": "ui_button",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "group": "c75ad4f0.0cede8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Where's Jason",
         "color": "",
         "bgcolor": "#910000",
         "icon": "fa-male",
         "payload": "",
         "payloadType": "str",
         "topic": "",
-        "x": 130,
-        "y": 280,
+        "x": 120,
+        "y": 480,
         "wires": [
             [
-                "45dc04c5.811fcc"
+                "45508d88.744a54"
             ]
         ]
     },
     {
-        "id": "235ad210.492b0e",
-        "type": "comment",
-        "z": "5ab56e5e.449a5",
-        "name": "How to embed Map in Dashboard",
-        "info": "This example shows how to embed the Worldmap \ninto a template node within the `node-red-dashboard`\n\nThe first flow creates a dashboard button that \ngenerates a randon position, with the required \nicon, and passes that to the worldmap. The\nmap is configured to automatically pan to the\nposition of any point that arrives.\n\nThe second flow initialise the dashboard template\nwith the initial map and sets it to a more square shape\nby adjusting the height.",
-        "x": 180,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "ef51b254.c41f8",
-        "type": "ui_slider",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "label": "slider",
-        "group": "33fabf90.2fdae",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "topic": "AAAA",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "x": 310,
-        "y": 820,
-        "wires": [
-            [
-                "e801ab50.e12fa8",
-                "c89941bb.94",
-                "fbcc8a14.9cfc48",
-                "c04a6b4a.6337e8",
-                "7c67e5b4.508b9c",
-                "48f59ada.4761c4",
-                "c1752406.db6818",
-                "7df53460.04cdfc",
-                "443aee23.40925"
-            ]
-        ]
-    },
-    {
-        "id": "e801ab50.e12fa8",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "597c8cca.c0ad24",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "label": "Line",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm",
-        "interpolate": "bezier",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "10",
-        "removeOlder": "30",
-        "removeOlderPoints": "100",
-        "removeOlderUnit": "1",
-        "cutout": 0,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 2,
-        "x": 550,
-        "y": 820,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "a094687c.f408f8",
-        "type": "ui_slider",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "label": "slider",
-        "group": "33fabf90.2fdae",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "topic": "BBB",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "x": 310,
-        "y": 860,
-        "wires": [
-            [
-                "e801ab50.e12fa8",
-                "c89941bb.94",
-                "fbcc8a14.9cfc48",
-                "443aee23.40925",
-                "c04a6b4a.6337e8",
-                "7c67e5b4.508b9c",
-                "48f59ada.4761c4",
-                "c1752406.db6818"
-            ]
-        ]
-    },
-    {
-        "id": "a082aa3a.8b9628",
-        "type": "ui_slider",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "label": "slider",
-        "group": "33fabf90.2fdae",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "topic": "CC",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "x": 310,
-        "y": 900,
-        "wires": [
-            [
-                "e801ab50.e12fa8",
-                "c89941bb.94",
-                "fbcc8a14.9cfc48",
-                "443aee23.40925",
-                "c1752406.db6818",
-                "48f59ada.4761c4",
-                "7c67e5b4.508b9c",
-                "c04a6b4a.6337e8"
-            ]
-        ]
-    },
-    {
-        "id": "e8cbef9f.abdde",
-        "type": "ui_slider",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "label": "slider",
-        "group": "33fabf90.2fdae",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "topic": "D",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "x": 310,
-        "y": 940,
-        "wires": [
-            [
-                "e801ab50.e12fa8",
-                "fbcc8a14.9cfc48",
-                "c89941bb.94",
-                "443aee23.40925",
-                "c1752406.db6818",
-                "48f59ada.4761c4",
-                "7c67e5b4.508b9c",
-                "c04a6b4a.6337e8"
-            ]
-        ]
-    },
-    {
-        "id": "443aee23.40925",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "597c8cca.c0ad24",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "Bar",
-        "chartType": "bar",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "colors": [
-            "#b40fb0",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 2,
-        "x": 550,
-        "y": 860,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "c89941bb.94",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d9a5a546.3dbcf8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "label": "Bar (H)",
-        "chartType": "horizontalBar",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 2,
-        "x": 550,
-        "y": 900,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "fbcc8a14.9cfc48",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d9a5a546.3dbcf8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "Pie",
-        "chartType": "pie",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": "25",
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 2,
-        "x": 550,
-        "y": 940,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "70c11a4b.372e04",
-        "type": "random",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "low": "0",
-        "high": "10",
-        "inte": "true",
-        "x": 160,
-        "y": 820,
-        "wires": [
-            [
-                "ef51b254.c41f8",
-                "e226e499.d100d8"
-            ]
-        ]
-    },
-    {
-        "id": "de6c94cf.e06a58",
-        "type": "inject",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "1",
-        "crontab": "",
-        "once": false,
-        "x": 131,
-        "y": 742,
-        "wires": [
-            [
-                "70c11a4b.372e04",
-                "7b25a3dd.f9224c",
-                "b07e3f5a.ef2f2",
-                "de9d98b8.d1cb38"
-            ]
-        ]
-    },
-    {
-        "id": "7b25a3dd.f9224c",
-        "type": "random",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "low": "0",
-        "high": "10",
-        "inte": "true",
-        "x": 160,
-        "y": 860,
-        "wires": [
-            [
-                "a094687c.f408f8",
-                "8615c147.2a197"
-            ]
-        ]
-    },
-    {
-        "id": "b07e3f5a.ef2f2",
-        "type": "random",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "low": "0",
-        "high": "10",
-        "inte": "true",
-        "x": 160,
-        "y": 900,
-        "wires": [
-            [
-                "a082aa3a.8b9628",
-                "66791422.4ddd5c"
-            ]
-        ]
-    },
-    {
-        "id": "de9d98b8.d1cb38",
-        "type": "random",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "low": "0",
-        "high": "10",
-        "inte": "true",
-        "x": 160,
-        "y": 940,
-        "wires": [
-            [
-                "e8cbef9f.abdde",
-                "39518116.f80d8e"
-            ]
-        ]
-    },
-    {
-        "id": "9d449cc9.71f1e",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "db98e5e4.57a268",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "x": 363,
-        "y": 1072,
-        "wires": []
-    },
-    {
-        "id": "e226e499.d100d8",
-        "type": "ui_text_input",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "label": "",
-        "group": "1804b9dc.fd1e66",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "",
-        "x": 140,
-        "y": 1080,
-        "wires": [
-            [
-                "9d449cc9.71f1e",
-                "f7df9217.5b12e",
-                "b819418.8f33ec",
-                "9b2868a8.dfbac8",
-                "1802159b.65fd6a",
-                "75c28d9.ca30874",
-                "a3fc693d.ef70a8",
-                "ff932d90.0b5e9"
-            ]
-        ]
-    },
-    {
-        "id": "cf334a99.610928",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "db98e5e4.57a268",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "gtype": "donut",
-        "title": "Gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "x": 363,
-        "y": 1112,
-        "wires": []
-    },
-    {
-        "id": "8615c147.2a197",
-        "type": "ui_text_input",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "label": "",
-        "group": "1804b9dc.fd1e66",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "",
-        "x": 140,
-        "y": 1120,
-        "wires": [
-            [
-                "cf334a99.610928",
-                "e8d79424.ca1ef8",
-                "e7000422.8e2288",
-                "e195514c.67385",
-                "f2839923.fd5a58",
-                "aac7bc67.b7e85",
-                "190e7015.63e69"
-            ]
-        ]
-    },
-    {
-        "id": "49b0152.a68f9ec",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "f822616a.38524",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "gtype": "compass",
-        "title": "Gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "x": 363,
-        "y": 1152,
-        "wires": []
-    },
-    {
-        "id": "66791422.4ddd5c",
-        "type": "ui_text_input",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "label": "",
-        "group": "1804b9dc.fd1e66",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "",
-        "x": 140,
-        "y": 1160,
-        "wires": [
-            [
-                "49b0152.a68f9ec",
-                "e42325d2.6dd6b8",
-                "ce349625.bdb598",
-                "16d00075.1bb92",
-                "8b9f1f1f.dad3b",
-                "2cb935d1.cd6a1a",
-                "9426b2c.2f8ff5"
-            ]
-        ]
-    },
-    {
-        "id": "359ca29d.f1b9fe",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "f822616a.38524",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "gtype": "wave",
-        "title": "Gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "x": 363,
-        "y": 1192,
-        "wires": []
-    },
-    {
-        "id": "39518116.f80d8e",
-        "type": "ui_text_input",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "label": "",
-        "group": "1804b9dc.fd1e66",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "",
-        "x": 140,
-        "y": 1200,
-        "wires": [
-            [
-                "359ca29d.f1b9fe",
-                "96887d8.321498",
-                "3fabb83f.35fa18",
-                "94698e20.5c0e8",
-                "39d7b922.15d596",
-                "610c083e.6eafb8",
-                "1262ae63.953fb2"
-            ]
-        ]
-    },
-    {
-        "id": "c04a6b4a.6337e8",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d5b824b2.e53e58",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "label": "Line",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "bezier",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "30",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "1",
-        "cutout": 0,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 2,
-        "x": 556,
-        "y": 993,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "7c67e5b4.508b9c",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d5b824b2.e53e58",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "label": "Bar",
-        "chartType": "bar",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "colors": [
-            "#864fb4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": true,
-        "outputs": 2,
-        "x": 556,
-        "y": 1033,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "48f59ada.4761c4",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "597c8cca.c0ad24",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "label": "Bar (H)",
-        "chartType": "horizontalBar",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "outputs": 2,
-        "x": 556,
-        "y": 1073,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "c1752406.db6818",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d5b824b2.e53e58",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "label": "Pie",
-        "chartType": "polar-area",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "10",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": "25",
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 2,
-        "x": 556,
-        "y": 1113,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "f7df9217.5b12e",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "ba1b0dd3.85941",
-        "order": 1,
-        "width": "3",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Gauge1",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 370,
-        "y": 1266,
-        "wires": []
-    },
-    {
-        "id": "e8d79424.ca1ef8",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "ba1b0dd3.85941",
-        "order": 4,
-        "width": "3",
-        "height": "2",
-        "gtype": "gage",
-        "title": "Gauge2",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 371,
-        "y": 1304,
-        "wires": []
-    },
-    {
-        "id": "e42325d2.6dd6b8",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "ba1b0dd3.85941",
-        "order": 2,
-        "width": "2",
-        "height": "2",
-        "gtype": "gage",
-        "title": "Gauge3",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 369,
-        "y": 1347,
-        "wires": []
-    },
-    {
-        "id": "96887d8.321498",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "ba1b0dd3.85941",
-        "order": 3,
-        "width": "2",
-        "height": "3",
-        "gtype": "gage",
-        "title": "Gauge4",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 360,
-        "y": 1380,
-        "wires": []
-    },
-    {
-        "id": "b819418.8f33ec",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "1b56aad7.5752e5",
-        "order": 2,
-        "width": 3,
-        "height": 2,
-        "gtype": "gage",
-        "title": "Gauge1",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 368,
-        "y": 1457,
-        "wires": []
-    },
-    {
-        "id": "e7000422.8e2288",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "1b56aad7.5752e5",
-        "order": 3,
-        "width": 3,
-        "height": 2,
-        "gtype": "gage",
-        "title": "Gauge2",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 369,
-        "y": 1495,
-        "wires": []
-    },
-    {
-        "id": "ce349625.bdb598",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "1b56aad7.5752e5",
-        "order": 4,
-        "width": 3,
-        "height": 3,
-        "gtype": "gage",
-        "title": "Gauge3",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 367,
-        "y": 1538,
-        "wires": []
-    },
-    {
-        "id": "3fabb83f.35fa18",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "1b56aad7.5752e5",
-        "order": 9,
-        "width": 3,
-        "height": 3,
-        "gtype": "gage",
-        "title": "Gauge4",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 367,
-        "y": 1582,
-        "wires": []
-    },
-    {
-        "id": "e195514c.67385",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "1b56aad7.5752e5",
-        "order": 1,
-        "width": 5,
-        "height": 4,
-        "gtype": "gage",
-        "title": "GaugeA",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 174,
-        "y": 1456,
-        "wires": []
-    },
-    {
-        "id": "16d00075.1bb92",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "1b56aad7.5752e5",
-        "order": 10,
-        "width": 2,
-        "height": 2,
-        "gtype": "gage",
-        "title": "Gauge5",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 367,
-        "y": 1630,
-        "wires": []
-    },
-    {
-        "id": "94698e20.5c0e8",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "1b56aad7.5752e5",
-        "order": 12,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Gauge6",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 367,
-        "y": 1674,
-        "wires": []
-    },
-    {
-        "id": "9b2868a8.dfbac8",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "1b56aad7.5752e5",
-        "order": 6,
-        "width": 2,
-        "height": 1,
-        "gtype": "gage",
-        "title": "Gauge7",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 364,
-        "y": 1719,
-        "wires": []
-    },
-    {
-        "id": "1802159b.65fd6a",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d32ebde8.b3228",
-        "order": 1,
-        "width": 4,
-        "height": 3,
-        "gtype": "gage",
-        "title": "GaugeA",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 620,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "f2839923.fd5a58",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d32ebde8.b3228",
-        "order": 2,
-        "width": 2,
-        "height": 2,
-        "gtype": "gage",
-        "title": "Gauge5",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 620,
-        "y": 1500,
-        "wires": []
-    },
-    {
-        "id": "8b9f1f1f.dad3b",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d32ebde8.b3228",
-        "order": 3,
-        "width": 1,
-        "height": 1,
-        "gtype": "gage",
-        "title": "Gauge6",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 620,
-        "y": 1540,
-        "wires": []
-    },
-    {
-        "id": "39d7b922.15d596",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "d32ebde8.b3228",
-        "order": 4,
-        "width": 1,
-        "height": 1,
-        "gtype": "gage",
-        "title": "Gauge7",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 620,
-        "y": 1580,
-        "wires": []
-    },
-    {
-        "id": "610c083e.6eafb8",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "8fe29e0c.e102e",
-        "order": 2,
-        "width": 4,
-        "height": 3,
-        "gtype": "gage",
-        "title": "GaugeA",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 820,
-        "y": 1460,
-        "wires": []
-    },
-    {
-        "id": "2cb935d1.cd6a1a",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "8fe29e0c.e102e",
-        "order": 3,
-        "width": 2,
-        "height": 2,
-        "gtype": "gage",
-        "title": "Gauge5",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 820,
-        "y": 1500,
-        "wires": []
-    },
-    {
-        "id": "75c28d9.ca30874",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "8fe29e0c.e102e",
-        "order": 4,
-        "width": 1,
-        "height": 1,
-        "gtype": "gage",
-        "title": "Gauge6",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 820,
-        "y": 1540,
-        "wires": []
-    },
-    {
-        "id": "aac7bc67.b7e85",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "8fe29e0c.e102e",
-        "order": 5,
-        "width": 1,
-        "height": 1,
-        "gtype": "gage",
-        "title": "Gauge7",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 820,
-        "y": 1580,
-        "wires": []
-    },
-    {
-        "id": "a3fc693d.ef70a8",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "4adac02f.cc3e7",
-        "order": 1,
-        "width": 3,
-        "height": 3,
-        "label": "Line",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "bezier",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "1",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 2,
-        "x": 630,
-        "y": 1220,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "9426b2c.2f8ff5",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "4adac02f.cc3e7",
-        "order": 2,
-        "width": 3,
-        "height": 3,
-        "label": "Line",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "bezier",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "1",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 2,
-        "x": 630,
-        "y": 1260,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "1262ae63.953fb2",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "4adac02f.cc3e7",
-        "order": 3,
-        "width": 3,
-        "height": 3,
-        "label": "Line",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "bezier",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "1",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 2,
-        "x": 630,
-        "y": 1300,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "190e7015.63e69",
-        "type": "ui_chart",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "group": "4adac02f.cc3e7",
-        "order": 4,
-        "width": 3,
-        "height": 3,
-        "label": "Line",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "bezier",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "1",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 2,
-        "x": 630,
-        "y": 1340,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "37dc2b31.4edcd4",
+        "id": "576d953b.3e57dc",
         "type": "worldmap-tracks",
-        "z": "5ab56e5e.449a5",
+        "z": "41f61d2.fbe09e4",
         "name": "",
-        "depth": "10",
-        "x": 303.5,
-        "y": 230,
+        "depth": 20,
+        "layer": "combined",
+        "x": 450,
+        "y": 420,
         "wires": [
             [
-                "104f9b89.5daf04"
+                "f9ae061e.76b048"
             ]
         ]
     },
     {
-        "id": "f888e972.de1a98",
-        "type": "worldmap in",
-        "z": "5ab56e5e.449a5",
+        "id": "814a9c85.e6fb8",
+        "type": "ui_button",
+        "z": "41f61d2.fbe09e4",
         "name": "",
-        "x": 480,
-        "y": 140,
-        "wires": [
-            [
-                "baaaba5f.2a46a8"
-            ]
-        ]
-    },
-    {
-        "id": "baaaba5f.2a46a8",
-        "type": "debug",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "active": false,
-        "console": false,
-        "complete": "true",
-        "x": 670,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "7df53460.04cdfc",
-        "type": "debug",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 570,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "a58ec245.d8bd",
-        "type": "inject",
-        "z": "5ab56e5e.449a5",
-        "name": "",
-        "topic": "",
+        "group": "c75ad4f0.0cede8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Delete Jason",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#910000",
+        "icon": "fa-male",
         "payload": "",
-        "payloadType": "date",
-        "repeat": "10",
-        "crontab": "",
-        "once": false,
+        "payloadType": "str",
+        "topic": "",
         "x": 110,
-        "y": 600,
+        "y": 420,
         "wires": [
-            []
+            [
+                "b9d3d78b.360d38"
+            ]
         ]
     },
     {
-        "id": "57f4ef01.7c1a2",
+        "id": "b9d3d78b.360d38",
         "type": "function",
-        "z": "5ab56e5e.449a5",
+        "z": "41f61d2.fbe09e4",
         "name": "",
-        "func": "msg.payload = context.foo || 2;\ncontext.foo = (context.foo === 3 ? 2 : 3);\nreturn msg;",
+        "func": "// create random position\nmsg.payload={name:\"Jason\", deleted:true};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 290,
-        "y": 600,
+        "x": 270,
+        "y": 420,
         "wires": [
             [
-                "e0ef7a5b.254668"
+                "576d953b.3e57dc"
             ]
         ]
     },
     {
-        "id": "e0ef7a5b.254668",
+        "id": "36c05d33.b783b2",
+        "type": "ui_button",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "group": "c75ad4f0.0cede8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Delete Track",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#910000",
+        "icon": "fa-male",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "108b8604.f5bb8a"
+            ]
+        ]
+    },
+    {
+        "id": "108b8604.f5bb8a",
+        "type": "function",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "func": "// create random position\nmsg.payload={name:\"Jason_\", deleted:true};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "f9ae061e.76b048"
+            ]
+        ]
+    },
+    {
+        "id": "e90f82d8.46a78",
         "type": "ui_ui_control",
-        "z": "5ab56e5e.449a5",
+        "z": "41f61d2.fbe09e4",
         "name": "",
-        "x": 460,
-        "y": 600,
+        "events": "all",
+        "x": 360,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c920e625.e95578",
+        "type": "ui_button",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "group": "a8ecb9.c60f4348",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Close Map",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"group\":{\"close\":[\"My_Simple_Dashboard_Map\"]}}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 150,
+        "y": 560,
         "wires": [
             [
-                "ce56a929.359a48"
+                "e90f82d8.46a78"
             ]
         ]
     },
     {
-        "id": "ce56a929.359a48",
-        "type": "debug",
-        "z": "5ab56e5e.449a5",
+        "id": "48892dbf.1d3e64",
+        "type": "ui_button",
+        "z": "41f61d2.fbe09e4",
         "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 630,
-        "y": 600,
-        "wires": []
+        "group": "a8ecb9.c60f4348",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Show Map",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"group\":{\"show\":[\"My_Simple_Dashboard_Map\"]}}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 150,
+        "y": 680,
+        "wires": [
+            [
+                "e90f82d8.46a78"
+            ]
+        ]
     },
     {
-        "id": "ff932d90.0b5e9",
-        "type": "ui_gauge",
-        "z": "5ab56e5e.449a5",
+        "id": "e44dda45.d85038",
+        "type": "ui_button",
+        "z": "41f61d2.fbe09e4",
         "name": "",
-        "group": "ba1b0dd3.85941",
+        "group": "a8ecb9.c60f4348",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Hide Map",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[\"My_Simple_Dashboard_Map\"]}}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 140,
+        "y": 640,
+        "wires": [
+            [
+                "e90f82d8.46a78"
+            ]
+        ]
+    },
+    {
+        "id": "1ffc9864.56de48",
+        "type": "ui_button",
+        "z": "41f61d2.fbe09e4",
+        "name": "",
+        "group": "a8ecb9.c60f4348",
         "order": 3,
-        "width": "1",
-        "height": "1",
-        "gtype": "gage",
-        "title": "Gauge5",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": 10,
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 360,
-        "y": 1420,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Open Map",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"group\":{\"open\":[\"My_Simple_Dashboard_Map\"]}}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "e90f82d8.46a78"
+            ]
+        ]
+    },
+    {
+        "id": "f9ae061e.76b048",
+        "type": "ui_worldmap",
+        "z": "41f61d2.fbe09e4",
+        "group": "c75ad4f0.0cede8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "lat": "",
+        "lon": "",
+        "zoom": "",
+        "layer": "",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "hide",
+        "layers": "hide",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "none",
+        "showgrid": "false",
+        "path": "/worldmap",
+        "x": 480,
+        "y": 480,
         "wires": []
     }
 ]
