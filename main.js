@@ -70,6 +70,7 @@ if (editable === true) {
             }
             store.set("electronFlow",flowfile)
         }
+        else { flowfile = path.join(userdir,flowfile); }
     }
     else { // We set the user directory to be in the users home directory...
         userdir = os.homedir() + '/.node-red';
