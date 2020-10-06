@@ -107,6 +107,7 @@ flowfile = store.get('electronFlow',flowfile);
 // console.log("UserDir :",userdir);
 console.log("FlowFile :",flowfile);
 // console.log("PORT",listenPort);
+console.log("Store",app.getPath('userData'))
 
 // Keep a global reference of the window objects, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
