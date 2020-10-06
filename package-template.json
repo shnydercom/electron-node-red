@@ -46,17 +46,19 @@
     },
     "homepage": "https://github.com/dceejay/electron-node-red#readme",
     "devDependencies": {
-        "electron": "~10.1.1",
-        "electron-builder": "^22.8.0"
+        "electron": "~10.1.3",
+        "electron-builder": "^22.8.1"
     },
     "build": {
         "appId": "com.electron.node-red-app",
         "productName": "My Node-RED Electron App",
         "copyright": "Copyright © 2018,2020 D.Conway-Jones",
-        "extraResources": [
+        "buildDependenciesFromSource": true,
+        "files": [
+            "**/*",
             {
                "from": "node_modules/@node-red/nodes/examples",
-                "to": "app/node_modules/@node-red/nodes/examples"
+                "to": "node_modules/@node-red/nodes/examples"
             }
         ],
         "mac": {

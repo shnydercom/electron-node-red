@@ -127,6 +127,7 @@ var settings = {
     userDir: userdir,
     flowFile: flowfile,
     flowFilePretty: true,
+    autoInstallModules: true,
     editorTheme: {
         projects:{ enabled:false },
         header: { title: options.productName },
