@@ -6,7 +6,7 @@
     "NRelectron": {
         "productName": "Node-RED Electron App",
         "editable": true,
-        "allowLoadSave": false,
+        "allowLoadSave": true,
         "showMap": false,
         "kioskMode": false,
         "addNodes": true,
@@ -64,8 +64,14 @@
         "files": [
             "**/*",
             {
-               "from": "node_modules/@node-red/nodes/examples",
+                "from": "node_modules/@node-red/nodes/examples",
                 "to": "node_modules/@node-red/nodes/examples"
+            }
+        ],
+        "fileAssociations": [
+            {
+                "ext": "flow",
+                "name": "Flow file"
             }
         ],
         "mac": {
