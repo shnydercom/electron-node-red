@@ -3,12 +3,14 @@
 const pkg = require('./package.json');
 let options;
 if (pkg.hasOwnProperty("NRelectron")) { options = pkg["NRelectron"] }
+let packages;
+if (pkg.hasOwnProperty("dependencies")) { packages = pkg["dependencies"] }
 
 // Some settings you can edit if you don't set them in package.json
 //console.log(options)
 const editable = options.editable || false;      // set this to false to create a run only application - no editor/no console
 const allowLoadSave = options.allowLoadSave || false; // set to true to allow import and export of flow file
-const showMap = options.showMap || false;       // set to true to add Worldmap to the menu
+let showMap = options.showMap || false;       // set to true to add Worldmap to the menu
 const kioskMode = options.kioskMode || false;   // set to true to start in kiosk mode
 const addNodes = options.addNodes || false;      // set to false to block installing extra nodes
 let flowfile = options.flowFile || 'electronflow.json'; // default Flows file name - loaded at start
@@ -18,10 +20,13 @@ const urledit = "/red";             // url for the editor page
 const urlconsole = "/console.htm";  // url for the console page
 const urlmap = "/worldmap";         // url for the worldmap
 const nrIcon = "nodered.png"        // Icon for the app in root dir (usually 256x256)
-let urlStart;                       // Start on this page
+
+let urlStart = urldash;                      // Start on this page
+if (!packages.hasOwnProperty("node-red-dashboard")) { urlStart = urledit; }
 if (options.start.toLowerCase() === "editor") { urlStart = urledit; }
-else if (options.start.toLowerCase() === "map") { urlStart = urlmap; }
-else { urlStart = urldash; }
+if (options.start.toLowerCase() === "map") { urlStart = urlmap; }
+
+if (!packages.hasOwnProperty("node-red-contrib-web-worldmap")) { showMap = false; }
 
 // TCP port to use
 //const listenPort = "18880";                           // fix it if you like
@@ -43,7 +48,7 @@ const ipc = electron.ipcMain;
 const dialog = electron.dialog;
 const BrowserWindow = electron.BrowserWindow;
 const Tray = electron.Tray;
-const { TouchBarButton } = TouchBar;
+const { TouchBarButton, TouchBarSpacer } = TouchBar;
 
 var RED = require("node-red");
 var red_app = express();
@@ -61,7 +66,7 @@ if (editable === true) {
     // if running as raw electron use the current directory (mainly for dev)
     if (process.argv[1] && (process.argv[1] === "main.js")) {
         userdir = __dirname;
-        if ((process.argv.length > 2) && (process.argv[process.argv.length-1].indexOf(".json") > -1)) {
+        if ((process.argv.length > 2) && ((process.argv[process.argv.length-1].indexOf(".json") > -1)||(process.argv[process.argv.length-1].indexOf(".flow") > -1))) {
             if (path.isAbsolute(process.argv[process.argv.length-1])) {
                 flowfile = process.argv[process.argv.length-1];
             }
@@ -73,11 +78,12 @@ if (editable === true) {
         else { flowfile = path.join(userdir,flowfile); }
     }
     else { // We set the user directory to be in the users home directory...
+        console.log("ARG",process.argv)
         userdir = os.homedir() + '/.node-red';
         if (!fs.existsSync(userdir)) {
             fs.mkdirSync(userdir);
         }
-        if ((process.argv.length > 1) && (process.argv[process.argv.length-1].indexOf(".json") > -1)) {
+        if ((process.argv.length > 1) && ((process.argv[process.argv.length-1].indexOf(".json") > -1) || (process.argv[process.argv.length-1].indexOf(".flow") > -1))) {
             if (path.isAbsolute(process.argv[process.argv.length-1])) {
                 flowfile = process.argv[process.argv.length-1];
             }
@@ -262,7 +268,7 @@ if (isDev) {
 function saveFlow() {
     const file_path = dialog.showSaveDialogSync({
         title:"Save Flow As",
-        filters:[{ name:'JSON', extensions:['json'] }],
+        filters:[{ name:'JSON', extensions:['json','flow'] }],
         properties: ["showHiddenFiles"],
         defaultPath: flowfile,
         buttonLabel: "Save Flow"
@@ -288,7 +294,7 @@ function saveFlow() {
 function openFlow() {
     const fileNames = dialog.showOpenDialogSync({
         title:"Load Flow File",
-        filters:[{ name:'JSON', extensions:['json'] }],
+        filters:[{ name:'JSON', extensions:['json','flow'] }],
         properties: ["openFile","showHiddenFiles"],
         defaultPath: flowfile,
         buttonLabel: "Load Flow"
@@ -324,7 +330,7 @@ function createConsole() {
         height: 600,
         icon: path.join(__dirname, nrIcon),
         autoHideMenuBar: true,
-        titleBarStyle: "hidden",
+        // titleBarStyle: "hidden",
         webPreferences: {
             nodeIntegration: true
         }
@@ -341,13 +347,13 @@ function createConsole() {
         conWindow = null;
     });
     //conWindow.webContents.openDevTools();
-    const touchButton4 = new TouchBarButton({
+    const touchButton5 = new TouchBarButton({
         label: 'Clear Log',
         backgroundColor: '#910000',
         click: () => { logBuffer = []; conWindow.webContents.send('logBuff', logBuffer); }
     });
     const consoleTouchBar = new TouchBar({
-        items: [ touchButton4 ]
+        items: [ touchButton5 ]
     });
     conWindow.setTouchBar(consoleTouchBar);
 }
@@ -361,7 +367,7 @@ function createWindow() {
         icon: path.join(__dirname, nrIcon),
         fullscreenable: true,
         autoHideMenuBar: false,
-        titleBarStyle: "hidden",
+        // titleBarStyle: "hidden",
         kiosk: kioskMode,
         webPreferences: {
             nodeIntegration: false
@@ -432,9 +438,21 @@ function createWindow() {
             click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urlmap); }
         });
 
+        const spacer = new TouchBarSpacer({ size: 'flexible' });
+
+        const touchButton4 = new TouchBarButton({
+            label: 'Console',
+            backgroundColor: '#910000',
+            click: () => { createConsole(); }
+        });
+
         var items = [ touchButton2 ];
         if (editable) { items.push(touchButton1) }
         if (showMap) { items.push(touchButton3) }
+        if (editable) {
+            items.push(spacer);
+            items.push(touchButton4);
+        }
 
         const mainTouchBar = new TouchBar({ items: items });
 
