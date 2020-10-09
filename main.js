@@ -107,13 +107,19 @@ if (editable === true) {
 else { store.clear(); }
 
 flowfile = store.get('electronFlow',flowfile);
+var myFlow;
+try { myFlow = fs.readFileSync(flowfile) }
+catch(e) { myFlow = []; }
+if (urlStart == urlmap && myFlow.indexOf("worldmap") == -1) { urlStart = urledit; }
+if (urlStart == urldash && myFlow.indexOf("ui-base") == -1) { urlStart = urledit; }
+myFlow = null;
 
 // console.log("CWD",process.cwd());
 // console.log("DIR",__dirname);
 // console.log("UserDir :",userdir);
-console.log("FlowFile :",flowfile);
 // console.log("PORT",listenPort);
 console.log("Store",app.getPath('userData'))
+console.log("FlowFile :",flowfile);
 
 // Keep a global reference of the window objects, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
