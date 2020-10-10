@@ -11,7 +11,7 @@
         "kioskMode": false,
         "addNodes": true,
         "flowFile": "electronflow.json",
-        "start": "editor"
+        "start": "dashboard"
     },
     "scripts": {
         "pack": "electron-builder --dir",

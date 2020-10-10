@@ -22,8 +22,8 @@ if (process.argv.length === 3 ) {
             app = require(arg);
         }
     }
-    else {  
-        app = require(path.join(arg, "package.json")); 
+    else {
+        app = require(path.join(arg, "package.json"));
         dn = arg;
     }
 }
@@ -40,12 +40,12 @@ const merge = {
 pkg.dependencies = merge;
 // Try to get flow file name from package.json setiings
 if (app.hasOwnProperty("node-red") && app["node-red"].hasOwnProperty("settings") && app["node-red"].settings.hasOwnProperty("flowFile") ) {
-    pkg.NRelectron.flowFile = app["node-red"].settings.flowFile; 
+    pkg.NRelectron.flowFile = app["node-red"].settings.flowFile;
 } // or the npm scripts if there is a run command
 else if (app.hasOwnProperty("scripts") && app.scripts.hasOwnProperty("start")) {
     pkg.NRelectron.flowFile = app.scripts.start.split(' ').pop();
 } // or the command line if the user gave us a name - or just guess flow.json.
-else { 
+else {
     pkg.NRelectron.flowFile = flowfile || "flow.json";
 }
 
@@ -73,7 +73,7 @@ fs.copyFile(path.join(arg, creds), path.join("./", creds), (err) => {
     else { console.log('Copied creds file - '+creds); }
 });
 
-// Finally re-write th new package.json
+// Finally re-write the new package.json
 fs.writeFile("./package.json", JSON.stringify(pkg, null, 4), 'utf8', function (err) {
     if (err) { console.log("Failed to re-write package.json file."); }
     else {

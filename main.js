@@ -426,16 +426,17 @@ function createWindow() {
 
     // If on a Mac add some touchbar buttons...
     if (process.platform === 'darwin') {
-        const touchButton1 = new TouchBarButton({
-            label: 'Editor',
-            backgroundColor: '#910000',
-            click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
-        });
 
-        const touchButton2 = new TouchBarButton({
+        const touchButton1 = new TouchBarButton({
             label: 'Dashboard',
             backgroundColor: '#910000',
             click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urldash); }
+        });
+
+        const touchButton2 = new TouchBarButton({
+            label: 'Editor',
+            backgroundColor: '#910000',
+            click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
         });
 
         const touchButton3 = new TouchBarButton({
@@ -444,25 +445,25 @@ function createWindow() {
             click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urlmap); }
         });
 
-        const spacer = new TouchBarSpacer({ size: 'flexible' });
-
         const touchButton4 = new TouchBarButton({
             label: 'Console',
             backgroundColor: '#910000',
             click: () => { createConsole(); }
         });
 
-        var items = [ touchButton2 ];
-        if (editable) { items.push(touchButton1) }
+        var items = [ touchButton1 ];
+        if (editable) { items.push(touchButton2) }
         if (showMap) { items.push(touchButton3) }
         if (editable) {
-            items.push(spacer);
+            items.push(new TouchBarSpacer({ size: 'flexible' }));
             items.push(touchButton4);
         }
 
-        const mainTouchBar = new TouchBar({ items: items });
-
-        mainWindow.setTouchBar(mainTouchBar);
+        // Only bother to add buttons if more than one
+        if (items.length != 1) {
+            const mainTouchBar = new TouchBar({ items: items });
+            mainWindow.setTouchBar(mainTouchBar);
+        }
     }
 
     // Start the app full screen
