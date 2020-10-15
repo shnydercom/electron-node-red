@@ -108,10 +108,10 @@ else { store.clear(); }
 
 flowfile = store.get('electronFlow',flowfile);
 var myFlow;
-try { myFlow = fs.readFileSync(flowfile) }
+try { myFlow = fs.readFileSync(flowfile).toString() }
 catch(e) { myFlow = []; }
 if (urlStart == urlmap && myFlow.indexOf("worldmap") == -1) { urlStart = urledit; }
-if (urlStart == urldash && myFlow.indexOf("ui-base") == -1) { urlStart = urledit; }
+if (urlStart == urldash && myFlow.indexOf("ui_base") == -1) { urlStart = urledit; }
 myFlow = null;
 
 // console.log("CWD",process.cwd());
