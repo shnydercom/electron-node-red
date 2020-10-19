@@ -355,7 +355,7 @@ function createConsole() {
     //conWindow.webContents.openDevTools();
     const touchButton5 = new TouchBarButton({
         label: 'Clear Log',
-        backgroundColor: '#910000',
+        backgroundColor: '#640000',
         click: () => { logBuffer = []; conWindow.webContents.send('logBuff', logBuffer); }
     });
     const consoleTouchBar = new TouchBar({
@@ -429,25 +429,25 @@ function createWindow() {
 
         const touchButton1 = new TouchBarButton({
             label: 'Dashboard',
-            backgroundColor: '#910000',
+            backgroundColor: '#640000',
             click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urldash); }
         });
 
         const touchButton2 = new TouchBarButton({
             label: 'Editor',
-            backgroundColor: '#910000',
+            backgroundColor: '#640000',
             click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
         });
 
         const touchButton3 = new TouchBarButton({
             label: 'Map',
-            backgroundColor: '#910000',
+            backgroundColor: '#640000',
             click: () => { mainWindow.loadURL("http://localhost:"+listenPort+urlmap); }
         });
 
         const touchButton4 = new TouchBarButton({
             label: 'Console',
-            backgroundColor: '#910000',
+            backgroundColor: '#640000',
             click: () => { createConsole(); }
         });
 
