@@ -135,6 +135,7 @@ ipc.on('clearLogBuffer', function() { logBuffer = []; });
 // Create the settings object - see default settings.js file for other options
 var settings = {
     uiHost: "localhost",    // only allow local connections, remove if you want to allow external access
+    uiPort: listenPort,
     httpAdminRoot: "/red",  // set to false to disable editor and deploy
     httpNodeRoot: "/",
     userDir: userdir,
