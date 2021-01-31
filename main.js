@@ -50,6 +50,9 @@ const BrowserWindow = electron.BrowserWindow;
 const Tray = electron.Tray;
 const { TouchBarButton, TouchBarSpacer } = TouchBar;
 
+const gotTheLock = app.requestSingleInstanceLock()
+if (!gotTheLock) { console.log("Second instance - quitting."); app.quit(); }
+
 var RED = require("node-red");
 var red_app = express();
 
@@ -123,7 +126,7 @@ console.log("FlowFile :",flowfile);
 
 // Keep a global reference of the window objects, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow = null;
 let conWindow;
 let tray;
 let logBuffer = [];
@@ -496,9 +499,22 @@ function createTray() {
 }
 
 // Called when Electron has finished initialization and is ready to create browser windows.
-app.on('ready', () => {
-    createTray()
-    createWindow()
+// app.on('ready', () => {
+//     createTray()
+//     myWindow = createWindow()
+// })
+
+app.whenReady().then(() => {
+    createTray();
+    createWindow();
+})
+
+app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (mainWindow) {
+        if (mainWindow.isMinimized()) { mainWindow.restore(); }
+        mainWindow.focus();
+    }
 })
 
 // Quit when all windows are closed.
