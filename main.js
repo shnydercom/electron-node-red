@@ -151,6 +151,7 @@ var settings = {
         palette: { editable:addNodes }
     },    // enable projects feature
     functionGlobalContext: { },    // enables global context - add extras ehre if you need them
+    functionExternalModules: true,
     logging: {
         websock: {
             level: 'info',
