@@ -1,6 +1,6 @@
 {
     "name": "electron_node_red",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "description": "Electron Node-RED application starter kit for development",
     "main": "main.js",
     "NRelectron": {
