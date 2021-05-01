@@ -1,615 +1,722 @@
 [
     {
-        "id": "41f61d2.fbe09e4",
+        "id": "6e16cadf.8f56f4",
         "type": "tab",
-        "label": "Flow 1"
-    },
-    {
-        "id": "52a903f3.ad56fc",
-        "type": "ui_tab",
-        "z": "41f61d2.fbe09e4",
-        "name": "My Simple Dashboard",
-        "icon": "dashboard",
+        "label": "main flow",
         "disabled": false,
-        "hidden": false
+        "info": ""
     },
     {
-        "id": "30e652f.d9de3ae",
-        "type": "ui_group",
-        "z": "41f61d2.fbe09e4",
-        "name": "Panel 2",
-        "tab": "52a903f3.ad56fc",
-        "order": 4,
-        "disp": true,
-        "width": "6"
+        "id": "4d9aadcc.7d5e64",
+        "type": "tab",
+        "label": "handleSingleOutputCharacteristicsTSV",
+        "disabled": false,
+        "info": ""
     },
     {
-        "id": "a8ecb9.c60f4348",
-        "type": "ui_group",
-        "z": "41f61d2.fbe09e4",
-        "name": "Introduction",
-        "tab": "52a903f3.ad56fc",
-        "order": 1,
-        "disp": false,
-        "width": "3"
+        "id": "698bd42d.78b59c",
+        "type": "tab",
+        "label": "handleSingleTransferCharacteristicsFile",
+        "disabled": false,
+        "info": ""
     },
     {
-        "id": "bbdf3e02.e8fee",
-        "type": "ui_group",
-        "z": "41f61d2.fbe09e4",
-        "name": "Panel 1",
-        "tab": "52a903f3.ad56fc",
-        "order": 2,
-        "disp": true,
-        "width": "6"
-    },
-    {
-        "id": "d9ba26fa.6d2b18",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#8e0d17",
-                "baseFont": "Copperplate,Copperplate Gothic Light,fantasy",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "Helvetica Neue",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "Helvetica Neue"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#d80005",
-                    "edited": true
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#8e0d17",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#333333",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#d41322",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#8e0d17",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "Copperplate,Copperplate Gothic Light,fantasy"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey"
+        "id": "10ecd421.b03f5c",
+        "type": "subflow",
+        "name": "grouping subflow",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 140,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "8633b5fd.edc8c8"
+                    }
+                ]
             }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
+        ],
+        "out": [
+            {
+                "x": 700,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "c34f0bd5.68a6e8",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 480,
+                "y": 260,
+                "wires": [
+                    {
+                        "id": "8633b5fd.edc8c8",
+                        "port": 1
+                    }
+                ]
             }
-        }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
     },
     {
-        "id": "87356b62.92e3d8",
-        "type": "ui_group",
-        "z": "",
-        "name": "Text to Speech",
-        "tab": "52a903f3.ad56fc",
-        "order": 5,
-        "disp": true,
-        "width": "6",
-        "collapse": false
+        "id": "6f50e72c.f70d58",
+        "type": "subflow",
+        "name": "groups to extra columns",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 200,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "e36a8378.7bbca"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 580,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "7c9171b9.c7fe",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 440,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "e36a8378.7bbca",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
     },
     {
-        "id": "c75ad4f0.0cede8",
-        "type": "ui_group",
-        "z": "",
-        "name": "Map",
-        "tab": "52a903f3.ad56fc",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": true
+        "id": "a3ef6f11.676f5",
+        "type": "link in",
+        "z": "4d9aadcc.7d5e64",
+        "name": "fileName-input",
+        "links": [
+            "e2f62bc3.cc2008"
+        ],
+        "x": 175,
+        "y": 220,
+        "wires": [
+            [
+                "15814723.0e6579"
+            ]
+        ]
     },
     {
-        "id": "189cf871.681118",
-        "type": "ui_template",
-        "z": "41f61d2.fbe09e4",
-        "group": "a8ecb9.c60f4348",
-        "name": "Welcome",
-        "order": 1,
-        "width": "3",
-        "height": "9",
-        "format": "<h3>Welcome to the <font color=\"#CE2020\">Node-RED</font> Dashboard</h3>\n<p>On the right you will see a graph and a chart logging data from the sliders underneath.</p>",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "x": 93,
-        "y": 45,
+        "id": "15814723.0e6579",
+        "type": "csv",
+        "z": "4d9aadcc.7d5e64",
+        "name": "tsv",
+        "sep": "\\t",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 290,
+        "y": 220,
+        "wires": [
+            [
+                "116d8fa5.bc7c6"
+            ]
+        ]
+    },
+    {
+        "id": "d77ac9c3.1c4a18",
+        "type": "file in",
+        "z": "6e16cadf.8f56f4",
+        "name": "output characteristics",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 540,
+        "y": 240,
+        "wires": [
+            [
+                "e2f62bc3.cc2008"
+            ]
+        ]
+    },
+    {
+        "id": "e2f62bc3.cc2008",
+        "type": "link out",
+        "z": "6e16cadf.8f56f4",
+        "name": "",
+        "links": [
+            "a3ef6f11.676f5"
+        ],
+        "x": 695,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "116d8fa5.bc7c6",
+        "type": "function",
+        "z": "4d9aadcc.7d5e64",
+        "name": "configure grouping",
+        "func": "var tsvLinesArray = msg.payload;\nvar columnNames = tsvLinesArray.keys;\n\nvar groupedBy = \"VG\";\n\nvar nextMsgPayload = {tsvLinesArray, groupedBy};\nmsg.payload = nextMsgPayload;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 220,
+        "wires": [
+            [
+                "e480e1c0.d4add"
+            ]
+        ]
+    },
+    {
+        "id": "42903cdf.bf5a74",
+        "type": "split",
+        "z": "4d9aadcc.7d5e64",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1030,
+        "y": 300,
+        "wires": [
+            [
+                "98c74838.c1ec78"
+            ]
+        ]
+    },
+    {
+        "id": "405ff4cc.e68c9c",
+        "type": "csv",
+        "z": "4d9aadcc.7d5e64",
+        "name": "to tsv - multi",
+        "sep": "\\t",
+        "hdrin": "",
+        "hdrout": "all",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1350,
+        "y": 300,
+        "wires": [
+            [
+                "d2975ab6.4f8288"
+            ]
+        ]
+    },
+    {
+        "id": "98c74838.c1ec78",
+        "type": "function",
+        "z": "4d9aadcc.7d5e64",
+        "name": "getGroup",
+        "func": "msg.filename = msg.filename.replace(\".txt\", \"\") + \"_\" + msg.payload[0] + \".txt\";\nmsg.filename = msg.filename.replace(\"/in/\", \"/out-multi/\");\nmsg.filename = msg.filename.replace(\"\\\\in\\\\\", \"\\\\out-multi\\\\\")\nmsg.payload = msg.payload[1];\ndelete msg.columns;\ndelete msg.file;\ndelete msg.size;\ndelete msg.type;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 300,
+        "wires": [
+            [
+                "405ff4cc.e68c9c"
+            ]
+        ]
+    },
+    {
+        "id": "d2975ab6.4f8288",
+        "type": "file",
+        "z": "4d9aadcc.7d5e64",
+        "name": "saves new txt-files in out folder",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1610,
+        "y": 300,
         "wires": [
             []
         ]
     },
     {
-        "id": "9f19ee5c.beaef",
-        "type": "ui_chart",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "group": "bbdf3e02.e8fee",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "label": "Chart Title",
-        "chartType": "line",
-        "xformat": "HH:mm:ss",
-        "interpolate": "basis",
-        "nodata": "No Data",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "100",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": "",
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
+        "id": "8fce29f9.9284a8",
+        "type": "function",
+        "z": "4d9aadcc.7d5e64",
+        "name": "file and folder config",
+        "func": "msg.filename = msg.filename.replace(\".txt\", \"_split-to-columns.txt\");\nmsg.filename = msg.filename.replace(\"/in/\", \"/out/\")\nmsg.filename = msg.filename.replace(\"\\\\in\\\\\", \"\\\\out\\\\\")\ndelete msg.columns;\ndelete msg.columns;\ndelete msg.file;\ndelete msg.size;\ndelete msg.type;\nreturn msg;",
         "outputs": 1,
-        "x": 290,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 200,
+        "wires": [
+            [
+                "3327327d.cc194e"
+            ]
+        ]
+    },
+    {
+        "id": "3327327d.cc194e",
+        "type": "csv",
+        "z": "4d9aadcc.7d5e64",
+        "name": "to tsv - single",
+        "sep": "\\t",
+        "hdrin": "",
+        "hdrout": "all",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1230,
+        "y": 200,
+        "wires": [
+            [
+                "f7726942.83edf8"
+            ]
+        ]
+    },
+    {
+        "id": "f7726942.83edf8",
+        "type": "file",
+        "z": "4d9aadcc.7d5e64",
+        "name": "saves new single file with many columns",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1520,
         "y": 200,
         "wires": [
             []
         ]
     },
     {
-        "id": "799d9318.fd385c",
-        "type": "ui_gauge",
-        "z": "41f61d2.fbe09e4",
+        "id": "145cd553.262e0b",
+        "type": "file in",
+        "z": "6e16cadf.8f56f4",
+        "name": "transf characteristics",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 540,
+        "y": 320,
+        "wires": [
+            [
+                "92f05d4b.ed6ff"
+            ]
+        ]
+    },
+    {
+        "id": "92f05d4b.ed6ff",
+        "type": "link out",
+        "z": "6e16cadf.8f56f4",
         "name": "",
-        "group": "30e652f.d9de3ae",
-        "order": 2,
-        "width": "",
-        "height": "",
-        "gtype": "gage",
-        "title": "Gauge Title",
-        "label": "gauge",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
+        "links": [
+            "1c68b1ee.c606be"
         ],
-        "seg1": "",
-        "seg2": "",
-        "x": 290,
-        "y": 140,
+        "x": 695,
+        "y": 320,
         "wires": []
     },
     {
-        "id": "6f18b200.666a4",
-        "type": "ui_button",
-        "z": "41f61d2.fbe09e4",
+        "id": "1c68b1ee.c606be",
+        "type": "link in",
+        "z": "698bd42d.78b59c",
         "name": "",
-        "group": "87356b62.92e3d8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "press to talk",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "fa-volume-up",
-        "payload": "Hello to Jason Isaacs",
-        "payloadType": "str",
-        "topic": "",
-        "x": 110,
-        "y": 300,
+        "links": [
+            "92f05d4b.ed6ff"
+        ],
+        "x": 185,
+        "y": 280,
         "wires": [
             [
-                "f897d7c2.467a58"
+                "b26dd35.690643"
             ]
         ]
     },
     {
-        "id": "f897d7c2.467a58",
-        "type": "ui_audio",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "group": "30e652f.d9de3ae",
-        "voice": "0",
-        "x": 280,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "da0f7e67.0d38a",
-        "type": "ui_slider",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "label": "slider",
-        "group": "30e652f.d9de3ae",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "topic": "",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "x": 90,
-        "y": 140,
+        "id": "b26dd35.690643",
+        "type": "csv",
+        "z": "698bd42d.78b59c",
+        "name": "tsv",
+        "sep": "\\t",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 310,
+        "y": 280,
         "wires": [
             [
-                "799d9318.fd385c"
+                "f546e1f5.beeab"
             ]
         ]
     },
     {
-        "id": "eabf2bd7.f4e0c8",
-        "type": "ui_slider",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "label": "slider",
-        "group": "bbdf3e02.e8fee",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "topic": "",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "x": 90,
-        "y": 200,
-        "wires": [
-            [
-                "9f19ee5c.beaef"
-            ]
-        ]
-    },
-    {
-        "id": "45508d88.744a54",
+        "id": "c34f0bd5.68a6e8",
         "type": "function",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "func": "// create random position\nvar lat = 51 + Math.random() * 0.2;\nvar lon = -1.45 + Math.random() * 0.2;\nmsg.payload={lat:lat, lon:lon, name:\"Jason\", icon:\"male\", url:\"<a href=\\\"/red/ui/#/0\\\">IBM link</a>\"};\nreturn msg;",
+        "z": "10ecd421.b03f5c",
+        "name": "groupBy-function",
+        "func": "function groupByColumn(tsvLinesArray, groupedBy) {\n    var groupedValsMap = new Map(); // a Map stores pairs of values\n    tsvLinesArray.forEach(function (line, idx) {\n        // figure out if there is a group for this value\n        var groupedByLineValue = line[groupedBy];\n        var keyForGrouping = \"\" + groupedByLineValue;\n        if (groupedValsMap.has(keyForGrouping)) {\n            //yes, there's already a group\n            groupedValsMap.get(keyForGrouping).push(line);\n        }\n        else {\n            groupedValsMap.set(keyForGrouping, [line]);\n        }\n    });\n    return groupedValsMap;\n}\nmsg.payload = Array.from(groupByColumn(msg.payload.tsvLinesArray, msg.payload.groupedBy));\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 280,
-        "y": 480,
-        "wires": [
-            [
-                "576d953b.3e57dc",
-                "1bc50b6.cfc1cf5"
-            ]
-        ]
-    },
-    {
-        "id": "6ca8cfc2.e0bce",
-        "type": "ui_button",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "group": "c75ad4f0.0cede8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Where's Jason",
-        "color": "",
-        "bgcolor": "#910000",
-        "icon": "fa-male",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 120,
-        "y": 480,
-        "wires": [
-            [
-                "45508d88.744a54"
-            ]
-        ]
-    },
-    {
-        "id": "576d953b.3e57dc",
-        "type": "worldmap-tracks",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "depth": 20,
-        "layer": "combined",
-        "x": 470,
-        "y": 440,
-        "wires": [
-            [
-                "1bc50b6.cfc1cf5"
-            ]
-        ]
-    },
-    {
-        "id": "814a9c85.e6fb8",
-        "type": "ui_button",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "group": "c75ad4f0.0cede8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Remove Jason",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "#910000",
-        "icon": "fa-male",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 110,
-        "y": 420,
-        "wires": [
-            [
-                "b9d3d78b.360d38"
-            ]
-        ]
-    },
-    {
-        "id": "b9d3d78b.360d38",
-        "type": "function",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "func": "// create random position\nmsg.payload={name:\"Jason\", deleted:true};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 280,
-        "y": 420,
-        "wires": [
-            [
-                "576d953b.3e57dc"
-            ]
-        ]
-    },
-    {
-        "id": "36c05d33.b783b2",
-        "type": "ui_button",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "group": "c75ad4f0.0cede8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Delete Track",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "#910000",
-        "icon": "fa-male",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 110,
-        "y": 360,
-        "wires": [
-            [
-                "108b8604.f5bb8a"
-            ]
-        ]
-    },
-    {
-        "id": "108b8604.f5bb8a",
-        "type": "function",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "func": "// create random position\nmsg.payload={name:\"Jason_\", deleted:true};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 280,
-        "y": 360,
-        "wires": [
-            [
-                "1bc50b6.cfc1cf5"
-            ]
-        ]
-    },
-    {
-        "id": "e90f82d8.46a78",
-        "type": "ui_ui_control",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "events": "all",
-        "x": 340,
-        "y": 560,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 160,
         "wires": [
             []
         ]
     },
     {
-        "id": "c920e625.e95578",
-        "type": "ui_button",
-        "z": "41f61d2.fbe09e4",
+        "id": "8633b5fd.edc8c8",
+        "type": "switch",
+        "z": "10ecd421.b03f5c",
         "name": "",
-        "group": "a8ecb9.c60f4348",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Close Map",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "{\"group\":{\"close\":[\"My_Simple_Dashboard_Map\"]}}",
-        "payloadType": "json",
-        "topic": "",
-        "x": 130,
-        "y": 560,
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "jsonata_exp",
+                "v": "\"tsvLinesArray\" in $keys($.payload) and \"groupedBy\" in $keys($.payload)",
+                "vt": "jsonata"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 280,
+        "y": 160,
         "wires": [
             [
-                "e90f82d8.46a78"
-            ]
+                "c34f0bd5.68a6e8"
+            ],
+            []
         ]
     },
     {
-        "id": "48892dbf.1d3e64",
-        "type": "ui_button",
-        "z": "41f61d2.fbe09e4",
+        "id": "e480e1c0.d4add",
+        "type": "subflow:10ecd421.b03f5c",
+        "z": "4d9aadcc.7d5e64",
         "name": "",
-        "group": "a8ecb9.c60f4348",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Show Map",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "{\"group\":{\"show\":[\"My_Simple_Dashboard_Map\"]}}",
-        "payloadType": "json",
-        "topic": "",
-        "x": 130,
-        "y": 640,
-        "wires": [
-            [
-                "e90f82d8.46a78"
-            ]
-        ]
-    },
-    {
-        "id": "e44dda45.d85038",
-        "type": "ui_button",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "group": "a8ecb9.c60f4348",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Hide Map",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "{\"group\":{\"hide\":[\"My_Simple_Dashboard_Map\"]}}",
-        "payloadType": "json",
-        "topic": "",
-        "x": 120,
-        "y": 680,
-        "wires": [
-            [
-                "e90f82d8.46a78"
-            ]
-        ]
-    },
-    {
-        "id": "1ffc9864.56de48",
-        "type": "ui_button",
-        "z": "41f61d2.fbe09e4",
-        "name": "",
-        "group": "a8ecb9.c60f4348",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Open Map",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "{\"group\":{\"open\":[\"My_Simple_Dashboard_Map\"]}}",
-        "payloadType": "json",
-        "topic": "",
-        "x": 130,
-        "y": 600,
-        "wires": [
-            [
-                "e90f82d8.46a78"
-            ]
-        ]
-    },
-    {
-        "id": "1bc50b6.cfc1cf5",
-        "type": "ui_worldmap",
-        "z": "41f61d2.fbe09e4",
-        "group": "c75ad4f0.0cede8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "lat": "",
-        "lon": "",
-        "zoom": "",
-        "layer": "",
-        "cluster": "",
-        "maxage": "",
-        "usermenu": "hide",
-        "layers": "hide",
-        "panit": "false",
-        "panlock": "false",
-        "zoomlock": "false",
-        "hiderightclick": "true",
-        "coords": "none",
-        "showgrid": "false",
-        "path": "/worldmap",
+        "env": [],
         "x": 480,
-        "y": 360,
+        "y": 300,
+        "wires": [
+            [
+                "42903cdf.bf5a74",
+                "1c017f0f.ebd311"
+            ],
+            [
+                "8dccbe0b.ac39b"
+            ]
+        ]
+    },
+    {
+        "id": "8dccbe0b.ac39b",
+        "type": "debug",
+        "z": "4d9aadcc.7d5e64",
+        "name": "debug issues",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 420,
         "wires": []
+    },
+    {
+        "id": "f546e1f5.beeab",
+        "type": "function",
+        "z": "698bd42d.78b59c",
+        "name": "configure grouping",
+        "func": "var tsvLinesArray = msg.payload;\nvar columnNames = tsvLinesArray.keys;\n\nvar groupedBy = \"VD\";\n\nvar nextMsgPayload = {tsvLinesArray, groupedBy};\nmsg.payload = nextMsgPayload;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "d0e4addb.134c5"
+            ]
+        ]
+    },
+    {
+        "id": "d0e4addb.134c5",
+        "type": "subflow:10ecd421.b03f5c",
+        "z": "698bd42d.78b59c",
+        "name": "",
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "fe1e4e02.bc1e3"
+            ],
+            [
+                "f27490ad.0c112"
+            ]
+        ]
+    },
+    {
+        "id": "fe1e4e02.bc1e3",
+        "type": "function",
+        "z": "698bd42d.78b59c",
+        "name": "configure functions to add",
+        "func": "function absOnColumn(row, column) {\n    return Math.abs(row[column]);\n}\nfunction sqrtAbsOnColumn(row, column) {\n    return Math.sqrt(Math.abs(row[column]));\n}\n\nvar fnsConfigObj = {\n\t\"-5\": [\n\t    {\n\t    column: \"ID\",\n        fn: absOnColumn,\n        columnName: \"AbsID\"\n\t    },\n\t    {\n\t    column: \"IG\",\n        fn: absOnColumn,\n        columnName: \"AbsIg\"\n\t    }\n    ],\n\t\"-25\": [\n\t    {\n\t    column: \"ID\",\n        fn: sqrtAbsOnColumn,\n        columnName: \"SqrtId\"\n\t    },\n\t    {\n\t    column: \"IG\",\n        fn: sqrtAbsOnColumn,\n        columnName: \"SqrtIg\"\n\t    }\n\t]\n}\nvar nextPayload = {\n    input: msg.payload,\n    fnConfig: fnsConfigObj\n}\nmsg.payload = nextPayload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 280,
+        "wires": [
+            [
+                "a6360974.874528"
+            ]
+        ]
+    },
+    {
+        "id": "f27490ad.0c112",
+        "type": "debug",
+        "z": "698bd42d.78b59c",
+        "name": "debug issues",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "7c9171b9.c7fe",
+        "type": "function",
+        "z": "6f50e72c.f70d58",
+        "name": "",
+        "func": "function arrayMapMatrixToGroupedColumn(input) {\n    var groupedColumn = Array(input[0][1].length).fill({});\n    input.forEach(function (mapMatrixElem) {\n        var groupName = mapMatrixElem[0];\n        var groupEntries = mapMatrixElem[1];\n        groupEntries.forEach(function (groupEntry, idx) {\n            var modifiedEntry = groupedColumn[idx];\n            for (var column in groupEntry) {\n                var columnContent = groupEntry[column];\n                modifiedEntry[column + \"_\" + groupName] = columnContent;\n            }\n        });\n    });\n    return groupedColumn;\n}\n\nmsg.payload = arrayMapMatrixToGroupedColumn(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e36a8378.7bbca",
+        "type": "switch",
+        "z": "6f50e72c.f70d58",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "length",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "7c9171b9.c7fe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1c017f0f.ebd311",
+        "type": "subflow:6f50e72c.f70d58",
+        "z": "4d9aadcc.7d5e64",
+        "name": "",
+        "x": 780,
+        "y": 200,
+        "wires": [
+            [
+                "8fce29f9.9284a8"
+            ],
+            [
+                "8dccbe0b.ac39b"
+            ]
+        ]
+    },
+    {
+        "id": "a6360974.874528",
+        "type": "function",
+        "z": "698bd42d.78b59c",
+        "name": "apply functions to groups",
+        "func": "function addFunctionsToArrayMapMatrix(input, fnConfig) {\n    var groupedColumn = Array(input[0][1].length).fill({});\n    input.forEach(function (mapMatrixElem) {\n        var groupName = mapMatrixElem[0];\n        var groupEntries = mapMatrixElem[1];\n        groupEntries.forEach(function (groupEntry, idx) {\n            var modifiedEntry = groupedColumn[idx];\n            for (var column in groupEntry) {\n                var columnContent = groupEntry[column];\n                modifiedEntry[column + \"_\" + groupName] = columnContent;\n            }\n            //apply functions to single element\n            var groupCfgObj = fnConfig[groupName];\n            if (groupCfgObj) {\n                groupCfgObj.forEach(function (fnCfg) {\n                    modifiedEntry[fnCfg.columnName + \"_\" + groupName] = fnCfg.fn(groupEntry, fnCfg.column);\n                });\n            }\n        });\n    });\n    return groupedColumn;\n}\n\nmsg.payload = addFunctionsToArrayMapMatrix(msg.payload.input, msg.payload.fnConfig);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 280,
+        "wires": [
+            [
+                "349156e5.14831a"
+            ]
+        ]
+    },
+    {
+        "id": "349156e5.14831a",
+        "type": "function",
+        "z": "698bd42d.78b59c",
+        "name": "file and folder config",
+        "func": "msg.filename = msg.filename.replace(\".txt\",\"_added_fns.txt\");\nmsg.filename = msg.filename.replace(\"/in/\", \"/out/\")\nmsg.filename = msg.filename.replace(\"\\\\in\\\\\", \"\\\\out\\\\\")\ndelete msg.columns;\ndelete msg.file;\ndelete msg.size;\ndelete msg.type;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1400,
+        "y": 280,
+        "wires": [
+            [
+                "706a6a71.6e6734"
+            ]
+        ]
+    },
+    {
+        "id": "706a6a71.6e6734",
+        "type": "csv",
+        "z": "698bd42d.78b59c",
+        "name": "to tsv - single",
+        "sep": "\\t",
+        "hdrin": "",
+        "hdrout": "all",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1630,
+        "y": 280,
+        "wires": [
+            [
+                "9e779d0d.823a5"
+            ]
+        ]
+    },
+    {
+        "id": "9e779d0d.823a5",
+        "type": "file",
+        "z": "698bd42d.78b59c",
+        "name": "saves functions in new single file with many columns",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1960,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84afba47.358778",
+        "type": "watch",
+        "z": "6e16cadf.8f56f4",
+        "name": "watch folder: output characteristics",
+        "files": "./../data/in/outputCharacteristics/",
+        "recursive": "",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "d77ac9c3.1c4a18"
+            ]
+        ]
+    },
+    {
+        "id": "e5c3ba65.5aa5a8",
+        "type": "watch",
+        "z": "6e16cadf.8f56f4",
+        "name": "watch folder: transfer characteristics",
+        "files": "./../data/in/transferCharacteristics/",
+        "recursive": "",
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "145cd553.262e0b"
+            ]
+        ]
     }
 ]

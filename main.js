@@ -21,7 +21,7 @@ const urlconsole = "/console.htm";  // url for the console page
 const urlmap = "/worldmap";         // url for the worldmap
 const nrIcon = "nodered.png"        // Icon for the app in root dir (usually 256x256)
 
-let urlStart = urldash;                      // Start on this page
+let urlStart = urledit;                      // Start on this page
 if (!packages.hasOwnProperty("node-red-dashboard")) { urlStart = urledit; }
 if (options.start.toLowerCase() === "editor") { urlStart = urledit; }
 if (options.start.toLowerCase() === "map") { urlStart = urlmap; }
